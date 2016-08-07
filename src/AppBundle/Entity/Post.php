@@ -39,6 +39,13 @@ class Post
     private $tags;
 
     /**
+     * @ORM\Column(name="title", type="string", length=255)
+     *
+     * @var string
+     */
+    private $title;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
@@ -69,7 +76,7 @@ class Post
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName")
      *
      * @var File
      */
@@ -287,6 +294,26 @@ class Post
     public function getImageName()
     {
         return $this->imageName;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return Post
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
 

@@ -8,35 +8,40 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("/blog")
+ */
 class PostController extends Controller
 {
     /**
-     * @Route("/post/create")
+     * @Route("/create", name="post_create")
      */
     public function createAction(Request $request)
     {
         $form = $this->createForm(new PostType(), new Post());
-        $form->handleRequest();
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $post = $form->getData();
+            $post->setCreatedAt(new \DateTime())->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->persist($post);
             $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirect($this->container->get('router')->generate('post_edit', array('id' => $post->getId())));
         }
 
         return $this->render('AppBundle:Post:edit.html.twig', array(
-            'form' => $form,
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * @Route("/post/edit/{id}")
+     * @Route("/edit/{id}", requirements={"id" = "\d+"}, name="post_edit")
      */
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
-
-        $post = $this->$this->getDoctrine()
-        ->getRepository('AppBundle:Product')
+        $post = $this->getDoctrine()
+        ->getRepository('AppBundle:Post')
         ->find($id);
 
         if (!$post) {
@@ -46,23 +51,24 @@ class PostController extends Controller
         }
 
         $form = $this->createForm(new PostType(), $post);
-        $form->handleRequest();
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $post = $form->getData();
+            $post->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->persist($post);
             $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->render('AppBundle:Post:edit.html.twig', array(
-            'form' => $form,
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * @Route("/post/delete/{id}")
+     * @Route("/delete/{id}",  requirements={"id" = "\d+"}, name="post_edit")
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
         return $this->render('AppBundle:Post:delete.html.twig', array(
             // ...

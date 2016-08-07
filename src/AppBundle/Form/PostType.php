@@ -17,12 +17,14 @@ class PostType extends AbstractType
         $builder
             ->add('isPublished')
             ->add('tags')
+            ->add('title')
             ->add('text')
             ->add('imageFile', 'vich_image', array(
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
             ))
+            ->add('submit', 'submit')
         ;
     }
     

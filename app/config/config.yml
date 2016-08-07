@@ -54,6 +54,7 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #     path:     "%database_path%"
+        # todo doctrine extensions
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -81,8 +82,9 @@ doctrine_migrations:
 
 vich_uploader:
     db_driver: orm
-
     mappings:
-            product_image:
-                uri_prefix:         /images/cartoons
-                upload_destination: %kernel.root_dir%/../web/images/cartoons
+        post_image:
+            uri_prefix:         /images/cartoons
+            upload_destination: %kernel.root_dir%/../web/images/cartoons
+
+# todo doctrine extensions
