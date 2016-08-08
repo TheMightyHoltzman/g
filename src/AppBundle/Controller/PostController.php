@@ -6,6 +6,7 @@ use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -66,7 +67,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}",  requirements={"id" = "\d+"}, name="post_edit")
+     * @Route("/delete/{id}",  requirements={"id" = "\d+"}, name="post_delete")
      */
     public function deleteAction($id)
     {

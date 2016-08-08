@@ -18,7 +18,7 @@ class PostType extends AbstractType
             ->add('isPublished')
             ->add('tags')
             ->add('title')
-            ->add('text')
+            ->add('text', 'textarea', array('attr' => array('style' => 'height: 150px;')))
             ->add('imageFile', 'vich_image', array(
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
