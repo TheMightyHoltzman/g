@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Post:edit{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Post:list page</h1>
+    <ul>
+    {% for post in posts %}
+        <li>
+            <a href="{{ path('post_edit', {'id': post.id}) }}">{{ post.title }} >> {{ post.id }}</a>
+            <a href="{{ path('post_delete', {'id': post.id}) }}" style="color: red;">del</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

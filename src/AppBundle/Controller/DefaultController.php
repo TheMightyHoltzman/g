@@ -15,34 +15,40 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /**
-         * @var $user User
-         */
-        $user = $this->getUser();
-        var_dump($user->getRoles());
-        echo phpinfo();
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }
 
-    public function showAction()
+    /**
+     * @Route("/blog/show/{id}", requirements={"id" = "\d+"}, name="post_show")
+     * @param $id
+     * @return Response
+     */
+    public function showAction($id)
     {
-
-    }
-
-    public function listAction()
-    {
-
+        return new Response('TODO');
     }
 
     /**
-     * @Route("/test", name="test")
+     * @Route("/blog/page/{page}", requirements={"page" = "\d+"}, name="post_show_all")
+     * @param $page
+     * @return Response
      */
-    public function testAction(Request $request)
+    public function listAction($page)
     {
-        // replace this example code with whatever you need
-        return new Response('This works');
+        return new Response('TODO');
+    }
+
+    /**
+     * @Route("/admin", name="admin")
+     * @return Response
+     */
+    public function adminAction()
+    {
+        $debug = 'BUG' . PHP_EOL;
+        echo phpinfo();
+        return new Response();
     }
 }

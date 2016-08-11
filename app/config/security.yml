@@ -28,3 +28,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_SUPER_ADMIN }
+        - { path: ^/blog/create, role: ROLE_SUPER_ADMIN }
+        - { path: ^/blog/edit, role: ROLE_SUPER_ADMIN }
+        - { path: ^/blog/delete, role: ROLE_SUPER_ADMIN }
+        - { path: ^/blog/list, role: ROLE_SUPER_ADMIN }

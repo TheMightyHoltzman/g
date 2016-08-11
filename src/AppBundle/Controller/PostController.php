@@ -67,13 +67,35 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/list", name="post_list")
+     */
+    public function listAction()
+    {
+        $posts = $this->getDoctrine()
+            ->getRepository('AppBundle:Post')->findAll();
+        return $this->render('AppBundle:Post:list.html.twig', array(
+            'posts' => $posts,
+        ));
+    }
+
+    /**
      * @Route("/delete/{id}",  requirements={"id" = "\d+"}, name="post_delete")
      */
     public function deleteAction($id)
     {
-        return $this->render('AppBundle:Post:delete.html.twig', array(
-            // ...
-        ));
+        $post = $this->getDoctrine()
+            ->getRepository('AppBundle:Post')
+            ->find($id);
+
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $this->getDoctrine()->getManager()->remove($post);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirect($this->get('router')->generate('post_list'));
     }
 
 }
