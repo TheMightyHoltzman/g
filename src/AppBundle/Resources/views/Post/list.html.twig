@@ -24,7 +24,7 @@
                 </td>
                 <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
-                <td><img class="img-rounded" width="100px" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ product.name }}" /></td>
+                <td><img class="img-thumbnail" width="100px" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ product.name }}" /></td>
                 <td>{{ post.createdAt|date("H:i d.m.Y") }}</td>
                 <td>{{ post.deletedAt|date("H:i d.m.Y") }}</td>
             </tr>
