@@ -8,4 +8,6 @@
 /app/phpunit.xml
 /build/
 /vendor/
-/bin/
+/.idea/*
+/bin/*
+/web/images/cartoons/*

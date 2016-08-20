@@ -67,12 +67,13 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/list", name="post_list")
+     * @Route("/list/{page}", name="post_list", requirements={"page" = "\d+"})
      */
-    public function listAction()
+    public function listAction($page)
     {
-        $posts = $this->getDoctrine()
-            ->getRepository('AppBundle:Post')->findAll();
+        $hitsPerPage = 30;
+        $posts       = $this->getDoctrine()->getRepository('AppBundle:Post')
+            ->findAll();
         return $this->render('AppBundle:Post:list.html.twig', array(
             'posts' => $posts,
         ));
