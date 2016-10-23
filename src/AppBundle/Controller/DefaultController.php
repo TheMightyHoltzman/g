@@ -52,13 +52,33 @@ class DefaultController extends Controller
      */
     public function showAction($id)
     {
-        $post = $this->getPostRepo()->find($id);
+        $post = $this->getPostRepo()->findOneBy(array(
+            "id"          => $id,
+            "isPublished" => true,
+        ));
 
         if (null === $post) {
             throw new NotFoundHttpException('Blog entry could not be found');
         }
 
-        return $this->render('pages/blog_item.html.twig');
+        return $this->render('pages/blog_item.html.twig', array('post' => $post));
+    }
+
+    /**
+     * @Route("/api/blog/{id}", requirements={"id" = "\d+"}, name="api_post_show")
+     * @param $id
+     * @return JsonResponse
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function apiShowAction($id)
+    {
+        $post = $this->getPostRepo()->find($id);
+
+        if (null === $post) {
+            return new JsonResponse('', 404);
+        }
+
+        return $this->render('components/blog_item.html.twig', array('post' => $post));
     }
 
     /**

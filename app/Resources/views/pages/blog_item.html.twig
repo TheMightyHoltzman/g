@@ -1,1 +1,7 @@
-{{ post.title }}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        {% include ':components:blog_item.html.twig' %}
+    </div>
+{% endblock %}

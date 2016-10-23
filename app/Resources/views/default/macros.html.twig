@@ -1,4 +1,4 @@
-{% macro img_thumbnail(file_name, size = 140, link = null, source = "cartoons") %}
+{% macro img_thumbnail(file_name, link = null, source = "cartoons") %}
     <div class="row">
         {% if app.environment == 'dev' %}
             {% set domain = 'http://glog.local' %}
