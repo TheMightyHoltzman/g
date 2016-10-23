@@ -1,9 +1,6 @@
 {% import 'default/macros.html.twig' as macros %}
 
 <div class="row glog-list-item">
-    <div class="col-md-6 col-pic">
-        {{ macros.img_thumbnail(post.imageName, 300) }}
-    </div>
     <div class="col-md-6 col-info">
         <h4>{{ post.title }}</h4>
         <p>
@@ -12,6 +9,9 @@
         <p class="glog-blog-teaser">
             {{ macros.cut(post.text) }}
         </p>
+    </div>
+    <div class="col-md-6 col-pic">
+        {{ macros.img_thumbnail(post.imageName) }}
     </div>
 </div>
 

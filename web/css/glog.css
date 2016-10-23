@@ -4,6 +4,10 @@ body {
     background-color: #D04747;
 }
 
+h4 {
+    font-size: 2em;
+}
+
 .glog-navbar {
     color: #ffffff;
     background-color: #750E0E;
@@ -29,5 +33,5 @@ body {
 }
 
 .glog-blog-teaser {
-    font-size: 12px;
+    font-size: 0.8em
 }
