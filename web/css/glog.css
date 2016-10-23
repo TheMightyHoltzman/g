@@ -1,3 +1,14 @@
 .body {
     margin-top: 80px;
+    font-family: "Fira Mono";
+}
+
+.glog-list-item {
+
+}
+
+.glog-heading {
+    font-family: Monofett;
+    font-size: 45px;
+    padding-top: 25px;
 }

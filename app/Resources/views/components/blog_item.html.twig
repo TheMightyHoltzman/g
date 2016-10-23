@@ -1,4 +1,11 @@
 {% import 'default/macros.html.twig' as macros %}
 
-{{ post.title }}
-{{ macros.img_thumbnail(post.imageName, 300) }}
+<div class="row glog-list-item">
+    <div class="col-md-6">
+        {{ macros.img_thumbnail(post.imageName, 300) }}
+    </div>
+    <div class="col-md-6">
+        <h4>{{ post.title }}</h4>
+        <span style="text-align: right;">{{ post.publishedAt|date("m/d/Y") }}</span>
+    </div>
+</div>
