@@ -1,0 +1,12 @@
+{% macro img_thumbnail(file_name, size = 140, link = null, source = "cartoons") %}
+    <div class="row">
+        {% if app.environment == 'dev' %}
+            {% set domain = 'http://glog.local' %}
+        {% else %}
+            {% set domain = 'http://www.themightyglog.com' %}
+        {% endif %}
+        <a href="{{ link }}">
+            <img src="{{ domain }}/images/{{ source }}/{{ file_name }}" class="img-responsive img-thumbnail glog-thumbnail" style="height: {{ size }}px;" alt="{{ file_name }}"/>
+        </a>
+    </div>
+{% endmacro %}

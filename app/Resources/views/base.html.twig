@@ -4,11 +4,13 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome to the world of the Mighty Glog!{% endblock %}</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/glog.css">
             {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         <div class="container">
+            {% include 'components/navbar.html.twig' %}
             {% block body %}{% endblock %}
         </div>
         {% block javascripts %}{% endblock %}

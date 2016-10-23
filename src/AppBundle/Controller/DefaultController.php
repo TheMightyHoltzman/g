@@ -18,7 +18,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-
         return $this->render('default/base_frontend.html.twig');
     }
 
@@ -36,8 +35,11 @@ class DefaultController extends Controller
     public function rssAction(Request $request)
     {
         $response = new Response();
-        $response->$response->headers->set('Content-Type', 'xml');
-        $response->setContent('TODO');
+        $response->headers->set('Content-Type', 'xml');
+        $a = ['foo' => 'bar']; // todo
+        $xml = new \SimpleXMLElement('<rss/>');
+        array_walk_recursive($a, array($xml, 'addChild'));
+        $response->setContent($xml->asXML());
 
         return $response;
     }

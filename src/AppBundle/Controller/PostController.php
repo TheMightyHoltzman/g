@@ -61,7 +61,7 @@ class PostController extends Controller
             $post = $form->getData();
             $post->setUpdatedAt(new \DateTime());
 
-            if (true !== $post->getIsPublished() && null === $post->getPublishedAt()) {
+            if (true === $post->getIsPublished() && null === $post->getPublishedAt()) {
                 $post->setPublishedAt(new \DateTime());
             }
 

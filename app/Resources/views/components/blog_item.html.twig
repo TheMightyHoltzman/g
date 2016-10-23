@@ -1,1 +1,4 @@
+{% import 'default/macros.html.twig' as macros %}
+
 {{ post.title }}
+{{ macros.img_thumbnail(post.imageName, 300) }}

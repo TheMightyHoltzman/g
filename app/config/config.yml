@@ -38,6 +38,7 @@ twig:
         # other form themes
         - 'VichUploaderBundle:Form:fields.html.twig'
 
+
 # Doctrine Configuration
 doctrine:
     dbal:
