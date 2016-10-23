@@ -10,3 +10,7 @@
         </a>
     </div>
 {% endmacro %}
+
+{% macro  cut(text, limit = 100) %}
+    {{ text|length > limit ? text|slice(0, limit) ~ '...' : text  }}
+{% endmacro %}
