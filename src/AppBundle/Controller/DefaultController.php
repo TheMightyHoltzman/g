@@ -86,7 +86,7 @@ class DefaultController extends Controller
      * @param $page
      * @return Response
      */
-    public function listAction($page)
+    public function listAction($page = 1)
     {
         $page = $page >= 0 ? $page : 0;
         $posts = $this->getPostRepo()->getBlogPaginator($page);
