@@ -5,3 +5,23 @@ app:
 # app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+about:
+    path: /about
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    static/about.html.twig
+
+contact:
+    path: /contact
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    static/contact.html.twig
+
+also_of_interest:
+    path: /also-of-interest
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    static/also-of-interest.html.twig
+
+
