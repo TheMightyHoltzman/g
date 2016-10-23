@@ -55,8 +55,16 @@ class PostController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            /**
+             * @var $post Post
+             */
             $post = $form->getData();
             $post->setUpdatedAt(new \DateTime());
+
+            if (true !== $post->getIsPublished() && null === $post->getPublishedAt()) {
+                $post->setPublishedAt(new \DateTime());
+            }
+
             $this->getDoctrine()->getManager()->persist($post);
             $this->getDoctrine()->getManager()->flush();
         }

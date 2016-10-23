@@ -62,6 +62,13 @@ class Post
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="publishedAt", type="datetime", nullable=true)
+     */
+    private $publishedAt;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
     private $deletedAt;
@@ -314,6 +321,23 @@ class Post
     public function getTitle()
     {
         return $this->title;
+    }
+
+
+    /**
+     * @param \DateTime $publishedAt
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
     }
 }
 
