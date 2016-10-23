@@ -1,11 +1,11 @@
 {% block body %}
     <div class="row">
-        <div class="col-lg-9 col-sm-12">
+        <div class="col-lg-9 col-md-12 col-sm-12">
             {% for post in posts %}
-                {% include 'blog_item.html' %}
+                {% include ':components:blog_item.html.twig' %}
             {% endfor %}
         </div>
-        <div class="col-lg-3 col-sm-12">
+        <div class="col-lg-3 col-md-12 col-sm-12">
 
         </div>
     </div>

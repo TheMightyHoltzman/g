@@ -18,7 +18,7 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 
         return $this->createQueryBuilder('b')
             ->andWhere('b.isPublished = 1')
-            ->addOrderBy('b.updatedAt DESC')
+            ->addOrderBy('b.publishedAt', 'DESC')
             ->setMaxResults(self::MAX_RESULTS)
             ->setFirstResult($page*self::MAX_RESULTS)
             ->getQuery()->getResult();
