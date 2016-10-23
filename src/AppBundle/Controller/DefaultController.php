@@ -77,6 +77,22 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/api/blogs/{page}", requirements={"page" = "\d+"}, name="api_post_")
+     * @param $page
+     * @return Response
+     */
+    public function apiListAction($page)
+    {
+        $page = $page >= 0 ? $page : 0;
+        $posts = $this->getPostRepo()->getBlogPaginator($page);
+
+        $content =$this->render('components/list.html.twig', array('posts' => $posts));
+        $content = $content->getContent();
+
+        return new JsonResponse(['content' => $content]);
+    }
+
+    /**
      * @Route("/admin", name="admin")
      * @return Response
      */
