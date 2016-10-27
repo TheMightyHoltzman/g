@@ -88,7 +88,7 @@ class DefaultController extends Controller
      */
     public function listAction($page = 1)
     {
-        $page = $page >= 0 ? $page : 0;
+        $page  = $page >= 0 ? $page : 0;
         $posts = $this->getPostRepo()->getBlogPaginator($page);
 
         return $this->render('pages/list.html.twig', [
