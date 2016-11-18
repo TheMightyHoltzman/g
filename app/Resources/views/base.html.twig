@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome to the world of the Mighty Glog!{% endblock %}</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/glog.css">
             {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -13,7 +12,9 @@
         <div class="container">
             {% include 'components/navbar.html.twig' %}
             {% block body %}{% endblock %}
+            {# {% include 'components/footer.html.twig' %} #}
         </div>
+
         {% block javascripts %}{% endblock %}
         {% include 'components/google_analytics.html.twig' %}
     </body>
