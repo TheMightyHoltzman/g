@@ -29,7 +29,7 @@ space_invaders:
     path: /space-invaders
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    default/space-invaders.html.twig
+        template:    pages/space-invaders.html.twig
 
 # app/config/routing.yml
 fos_user:
