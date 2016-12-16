@@ -11,9 +11,7 @@
         </p>
     </div>
     <div class="col-md-6 col-pic">
-        {% if post.imageName is not null %}
             {{ macros.img_thumbnail(post.imageName, path('post_show', {'id': post.id})) }}
-        {% endif %}
     </div>
 </div>
 

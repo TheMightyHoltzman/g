@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,14 @@ class PostType extends AbstractType
             ->add('isPublished')
             ->add('tags')
             ->add('title')
-            ->add('text', 'textarea', array('attr' => array('style' => 'height: 150px;')))
+            ->add('text', 'textarea', ['attr' => array('style' => 'height: 150px;')])
+            ->add('category', ChoiceType::class, [
+                'choices' => [
+                    'cartoon' => 'Cartoon',
+                    'random'  => 'Random',
+                    'private' => 'Private',
+                ]
+            ])
             ->add('imageFile', 'vich_image', array(
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true

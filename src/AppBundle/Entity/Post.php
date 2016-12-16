@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
@@ -12,6 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  * @Vich\Uploadable
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Post
 {
@@ -44,6 +46,14 @@ class Post
      * @var string
      */
     private $title;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     *
+     * @var string
+     */
+    private $slug;
 
     /**
      * @var \DateTime
@@ -96,6 +106,13 @@ class Post
      */
     private $imageName;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @var string
+     *
+     */
+    private $category;
 
     /**
      * Get id
@@ -323,7 +340,6 @@ class Post
         return $this->title;
     }
 
-
     /**
      * @param \DateTime $publishedAt
      */
@@ -338,6 +354,38 @@ class Post
     public function getPublishedAt()
     {
         return $this->publishedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }
 
