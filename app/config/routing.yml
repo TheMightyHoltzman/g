@@ -25,6 +25,12 @@ also_of_interest:
         _controller: FrameworkBundle:Template:template
         template:    static/also-of-interest.html.twig
 
+space_invaders:
+    path: /space-invaders
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    pages/space-invaders.html.twig
+
 # app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
