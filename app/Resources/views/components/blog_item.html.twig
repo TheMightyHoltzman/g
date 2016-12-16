@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="col-md-6 col-pic">
-            {{ macros.img_thumbnail(post.imageName, path('post_show', {'id': post.id})) }}
+            {{ macros.img_thumbnail(post.imageName, path('post_show', {'slug': post.slug})) }}
     </div>
 </div>
 
