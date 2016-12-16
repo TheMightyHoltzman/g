@@ -45,15 +45,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/blog/{id}", requirements={"id" = "\d+"}, name="post_show")
-     * @param $id
+     * @Route("/blog/{slug}", name="post_show")
+     * @param $slug
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $post = $this->getPostRepo()->findOneBy(array(
-            "id"          => $id,
+            "slug"          => $slug,
             "isPublished" => true,
         ));
 
