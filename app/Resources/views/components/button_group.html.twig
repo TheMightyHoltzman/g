@@ -1,0 +1,59 @@
+{% set defaultMapping = {
+    'edit'    : {
+        'class'   : 'btn-success',
+        'icon'    : 'fa-edit',
+        'newTab'  : true,
+        'title'   : 'Edit/Bearbeiten',
+        'confirm' : false,
+        'onclick' : false,
+    },
+    'delete'  : {
+        'class'  : 'btn-danger',
+        'icon'    : 'fa-trash-o',
+        'newTab'  : false,
+        'title'   : 'Delete/Löschen',
+        'confirm' : true,
+        'onclick' : false,
+    },
+    'publish' : {
+        'class' : 'btn-publish',
+        'icon'   : 'fa-thumbs-up',
+        'newTab' : true,
+        'title'  : 'Publish/Veröffentlichen',
+        'confirm' : false,
+        'onclick' : false,
+    },
+    'preview' : {
+        'class' : 'btn-info',
+        'icon'   : 'fa-eye',
+        'newTab' : true,
+        'title'  : 'Preview/Vorschau',
+        'confirm' : false,
+        'onclick' : "alert('Add an onclick-method');",
+    },
+    'default' : {
+        'link'   : '#',
+        'class'  : 'btn-success',
+        'icon'   : 'fa-question',
+        'newTab' : true,
+        'title'  : 'Bitte Titel angeben',
+        'confirm' : false,
+        'onclick' : false,
+    }
+} %}
+{% set btnSize = btnSize is defined ? btnSize : 'btn-sm' %}
+{% set nrOptions = options|length %}
+{% if nrOptions > 1 %}
+<div class="btn-group">
+{% endif %}
+    {% for type, option in options %}
+        {% if type not in defaultMapping|keys %}
+            {% set type = 'default' %}
+        {% endif %}
+        {% set option = defaultMapping[type]|merge(option) %}
+        {% set option = option|merge({'class': option.class ~ ' ' ~ btnSize}) %}
+        {{ include('/Base/Components/button.html.twig', option) }}
+    {% endfor %}
+{% if nrOptions > 1 %}
+</div>
+{% endif %}

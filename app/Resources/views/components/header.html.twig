@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <i class="navbar-brand fa fa-random"> BROCA</i>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% for linkableUrl, linkableFull in linkables %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ linkableFull }}
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ path('broca.list', {'class': linkableUrl|replace({'_':'-'}), 'lang': app.request.get('lang')}) }}">Links</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('broca.orphan', {'class': linkableUrl|replace({'_':'-'}), 'lang': app.request.get('lang')}) }}">Unlinked Entities</a>
+                        </li>
+                    </ul>
+                    {% endfor %}
+            </ul>
+            <p class="navbar-text navbar-right" style="margin-right: 5px;">Hallo {{ app.user.username }}</p>
+            {% if app.environment == 'dev' %}
+                <p class="navbar-text navbar-right">DEV-Mode</p>
+            {% endif %}
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,42 @@
+{% set size = size is defined ? size : 1 %}
+{% if 0 != maxPage %}
+    {% set from = currentPage - size < 1? 1 : currentPage - size %}
+    {% set to = currentPage + size > maxPage ? maxPage : currentPage + size %}
+    {% set range = range(from,to) %}
+    {% if not (1 in range) %}
+        {% set range = range|merge({'first': 1}) %}
+    {% endif %}
+    {% if not (maxPage in range) %}
+        {% set range = range|merge({'last': maxPage}) %}
+    {% endif %}
+    {% set range = range|sort %}
+    {% set previous = null %}
+{% else %}
+    {% set range = [] %}
+{% endif %}
+
+<ul class="pagination pagination-sm">
+    {# left arrow #}
+    <li {{ currentPage == 1 ? 'class="disabled"' }}>
+        <a href="{{ currentPage != 1 ? path(url, urlParameters|merge({'page' : (currentPage - 1)})) : '#' }}">&laquo;</a>
+    </li>
+    {# between #}
+    {% for index in range %}
+        {# dots #}
+        {% set diff = (index-previous)|abs %}
+        {% if previous != null and diff > 1 %}
+            <li class="disabled">
+                <a href="#">&hellip;</a>
+            </li>
+        {% endif %}
+        {# numbers #}
+        <li {{ index != currentPage ? '' : 'class="active"' }}>
+            <a href="{{ path(url, urlParameters|merge({'page' : index})) }}">{{ index }}</a>
+        </li>
+        {% set previous = index %}
+    {% endfor %}
+    {# right arrow #}
+    <li {{ maxPage == 0 or currentPage == maxPage ? 'class="disabled"' }}>
+        <a href="{{ currentPage != maxPage ? path(url, urlParameters|merge({'page' : (currentPage + 1)})) : '#' }}">&raquo;</a>
+    </li>
+</ul>
