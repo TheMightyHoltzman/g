@@ -1,7 +1,24 @@
+/* default color scheme */
+.glog-yellow {
+    background-color: #FFD90A;
+}
+
+.glog-blue {
+    background-color: #9BABFF;
+}
+
+.glog-white {
+    background-color: #ffffff;
+}
+
+.glog-red {
+    background-color: #D04747;
+}
+
 body {
     margin-top: 100px;
     font-family: "Fira Mono";
-    background-color: #D04747;
+    background-color: #FFD90A;
 }
 
 h4 {
@@ -10,7 +27,7 @@ h4 {
 
 .glog-navbar {
     color: #ffffff;
-    background-color: #750E0E;
+    background-color: #9BABFF                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
 }
 
 .glog-list-item {
