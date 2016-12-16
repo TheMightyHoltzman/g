@@ -83,14 +83,14 @@ class Post
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="imageName", nullable=true)
      *
      * @var File
      */
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */

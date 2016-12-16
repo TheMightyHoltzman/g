@@ -56,12 +56,14 @@ function draw() {
     }
 
     // draw actual snake
+    fill('white');
     rect(snake.x, snake.y, scl, scl);
     for (var tailIndex = 0; tailIndex < snake.tail.length; tailIndex++) {
         rect(snake.tail[tailIndex].x, snake.tail[tailIndex].y, scl, scl);
     }
 
     // draw food
+    fill('red');
     rect(food.x, food.y, scl, scl);
 }
 
@@ -73,10 +75,17 @@ function calcY(ySpeed) {
     return snake.y + ySpeed*scl;
 }
 
+function collision(aX, aY, bX, bY) {
+    if (aX === bX && aY === bY) {
+        return true;
+    }
+    return false;
+}
+
 function hasCollision() {
     for (var tailIndex = 0; tailIndex < snake.tail.length; tailIndex++) {
         // self-collision
-        if (snake.x === snake.tail[tailIndex].x && snake.y === snake.tail[tailIndex].y) {
+        if (collision(snake.x, snake.y, snake.tail[tailIndex].x, snake.tail[tailIndex].y)) {
             return true;
         }
         // edge-collision
@@ -86,9 +95,27 @@ function hasCollision() {
     }
 }
 
+function snakeCollision(x,y) {
+    if (collision(x, y, snake.x, snake.y)) {
+       return true;
+    }
+    for (var i = 0; i < snake.tail.length; i++) {
+        if (collision(x, y, snake.tail[i].x, snake.tail[i].y)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function positionFood() {
-    food.x = floor(random(0, floor(width/scl)-1))*scl;
-    food.y = floor(random(0, floor(height/scl)-1))*scl;
+    var foodX = null;
+    var foodY = null;
+    while (foodX == null || snakeCollision(foodX, foodY)) {
+        foodX = floor(random(0, floor(width/scl)-1))*scl;
+        foodY = floor(random(0, floor(height/scl)-1))*scl;
+    }
+    food.x = foodX;
+    food.y = foodY;
 }
 
 function keyPressed() {

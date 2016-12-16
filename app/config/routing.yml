@@ -25,11 +25,11 @@ also_of_interest:
         _controller: FrameworkBundle:Template:template
         template:    static/also-of-interest.html.twig
 
-space_invaders:
-    path: /space-invaders
+game_snake:
+    path: /games/snake
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    pages/space-invaders.html.twig
+        template:    pages/snake.html.twig
 
 # app/config/routing.yml
 fos_user:
