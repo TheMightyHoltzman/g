@@ -22,7 +22,7 @@ class PostType extends AbstractType
             ->add('title')
             ->add('text', 'textarea', ['attr' => array('style' => 'height: 150px;')])
             ->add('category', ChoiceType::class, [
-                'choices' => Post::getCategories(),
+                'choices' => array_combine(Post::getCategories(), Post::getCategories()),
             ])
             ->add('imageFile', 'vich_image', array(
                 'required'      => false,

@@ -1,24 +1,18 @@
 {% import 'default/macros.html.twig' as macros %}
 
 <div class="row glog-list-item">
-    {% if post.category == 'cartoon' %}
-    <div class="col-md-12 col-cartoon">
-
+    <div class="col-md-6 col-info">
+        <h4>{{ post.title }}</h4>
+            <p>
+                <span class="glog-date" style="text-align: right;">{{ post.publishedAt|date("m/d/Y") }}</span>
+            </p>
+            <p class="glog-blog-teaser">
+                {{ macros.cut(post.text) }}
+            </p>
     </div>
-    {% else %}
-        <div class="col-md-6 col-info">
-            <h4>{{ post.title }}</h4>
-                <p>
-                    <span class="glog-date" style="text-align: right;">{{ post.publishedAt|date("m/d/Y") }}</span>
-                </p>
-                <p class="glog-blog-teaser">
-                    {{ macros.cut(post.text) }}
-                </p>
-        </div>
-        <div class="col-md-6 col-pic">
-                {{ macros.img_thumbnail(post.imageName, path('post_show', {'slug': post.slug})) }}
-        </div>
-    {% endif %}
+    <div class="col-md-6 col-pic">
+            {{ macros.img_thumbnail(post.imageName, path('post_show', {'slug': post.slug})) }}
+    </div>
 </div>
 
 <hr>
