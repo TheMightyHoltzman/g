@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use AppBundle\Repository\PostRepository;
 use FOS\UserBundle\Model\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,7 +46,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/blog/{slug}", name="post_show")
+     * @Route("/cartoon/{slug}", name="post_show")
      * @param $slug
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -82,13 +83,26 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/cartoons/{page}", requirements={"page" = "\d+"}, name="post_cartoons_all")
+     * @param int $page
+     * @return Response
+     */
+    public function cartoonList($page = 1)
+    {
+        $page  = $page >= 0 ? $page : 1;
+        $posts = $this->getPostRepo()->getBlogPaginator($page, Post::CATEGORY_CARTOON);
+
+        return $this->render('pages/list.html.twig', array('posts' => $posts));
+    }
+
+    /**
      * @Route("/blogs/{page}", requirements={"page" = "\d+"}, name="post_show_all")
      * @param $page
      * @return Response
      */
     public function listAction($page = 1)
     {
-        $page  = $page >= 0 ? $page : 0;
+        $page  = $page >= 0 ? $page : 1;
         $posts = $this->getPostRepo()->getBlogPaginator($page);
 
         return $this->render('pages/list.html.twig', [

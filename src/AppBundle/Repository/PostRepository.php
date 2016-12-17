@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * PostRepository
@@ -12,15 +13,25 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 {
     const MAX_RESULTS = 15;
 
-    public function getBlogPaginator($page)
+    public function getBlogPaginator($page, $category = null)
     {
-        $page -= $page;
+        $qb =$this->getBlogQb($page);
 
+        if ($category) {
+            $qb->andWhere('(b.category = :category )')
+                ->setParameter('category', $category);
+        }
+
+        return new Paginator($qb, false);
+    }
+
+    public function getBlogQb($page)
+    {
+        --$page;
         return $this->createQueryBuilder('b')
             ->andWhere('b.isPublished = 1')
             ->addOrderBy('b.publishedAt', 'DESC')
             ->setMaxResults(self::MAX_RESULTS)
-            ->setFirstResult($page*self::MAX_RESULTS)
-            ->getQuery()->getResult();
+            ->setFirstResult($page*self::MAX_RESULTS);
     }
 }

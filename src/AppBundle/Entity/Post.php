@@ -17,6 +17,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Post
 {
+    const CATEGORY_CARTOON = 'cartoon';
+    const CATEGORY_RANDOM  = 'random';
+    const CATEGORY_PRIVATE = 'private';
+
     /**
      * @var int
      *
@@ -386,6 +390,20 @@ class Post
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * Return all possible categories
+     *
+     * @return array
+     */
+    public static function getCategories()
+    {
+        return [
+            self::CATEGORY_CARTOON,
+            self::CATEGORY_PRIVATE,
+            self::CATEGORY_RANDOM,
+        ];
     }
 }
 

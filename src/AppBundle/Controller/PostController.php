@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/blog")
+ * @Route("/post")
  */
 class PostController extends Controller
 {
@@ -79,9 +79,7 @@ class PostController extends Controller
      */
     public function listAction($page)
     {
-        $hitsPerPage = 30;
-        $posts       = $this->getDoctrine()->getRepository('AppBundle:Post')
-            ->findAll();
+        $posts       = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
         return $this->render('AppBundle:Post:list.html.twig', array(
             'posts' => $posts,
         ));
@@ -104,7 +102,9 @@ class PostController extends Controller
 
         $this->getDoctrine()->getManager()->remove($post);
         $this->getDoctrine()->getManager()->flush();
-        return $this->redirect($this->get('router')->generate('post_list'));
+        return $this->redirect($this->get('router')->generate('post_list', array(
+            'page' => 1,
+        )));
     }
 
 }

@@ -1,10 +1,10 @@
 /* default color scheme */
 .glog-yellow {
-    background-color: #ffe371;
+    background-color: rgba(255, 217, 10, 0.68);
 }
 
 .glog-blue {
-    background-color: #9BABFF;
+    background-color: #8893cc;
 }
 
 .glog-white {
@@ -18,7 +18,7 @@
 body {
     margin-top: 100px;
     font-family: "Fira Mono";
-    background-color: #FFD90A;
+    background-color: rgba(255, 217, 10, 0.68);
 }
 
 h4 {
@@ -27,7 +27,7 @@ h4 {
 
 .glog-navbar {
     color: #ffffff;
-    background-color: #9BABFF                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
+    background-color: #8893cc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ;
 }
 
 .glog-list-item {

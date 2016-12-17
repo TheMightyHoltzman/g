@@ -1,16 +1,15 @@
 {% macro img_thumbnail(file_name, link = null, source = "cartoons") %}
     <div class="row">
-        {% if app.environment == 'dev' %}
-            {% set domain = 'http://glog.local' %}
-        {% else %}
-            {% set domain = 'http://www.themightyglog.com' %}
-        {% endif %}
         <a href="{{ link }}">
-            <img src="{{ domain }}/images/{{ source }}/{{ file_name }}" class="img-responsive img-thumbnail glog-thumbnail" alt="{{ file_name }}"/>
+            <img src="{{ _self.image_pth(file_name, source) }}" class="img-responsive img-thumbnail glog-thumbnail" alt="{{ file_name }}"/>
         </a>
     </div>
 {% endmacro %}
 
 {% macro  cut(text, limit = 100) %}
     {{ text|length > limit ? text|slice(0, limit) ~ '...' : text  }}
+{% endmacro %}
+
+{% macro image_pth(file_name, source) %}
+    /images/{{ source }}/{{ file_name }}
 {% endmacro %}
