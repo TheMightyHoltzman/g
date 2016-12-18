@@ -41,10 +41,9 @@ function setup() {
 }
 
 function draw() {
-    if (! board.isSolved()) {
+    if(!board.isSolved()) {
         background(51);
-        board.show();
         board.solve();
     }
-
+    board.show();
 }

@@ -24,7 +24,7 @@ function Board(cells, aSize) {
         if (!this.solved) {
             for (var i = 0; i < this.size; i++) {
                 for(var j = 0; j<this.size; j++) {
-                    if (!this.getCell(i, j).solved) {
+                    if (!this.getCell(i, j).val) {
                         return false;
                     }
                 }
