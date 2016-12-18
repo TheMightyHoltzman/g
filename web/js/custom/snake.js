@@ -15,7 +15,7 @@ var gameOver = false;
 function setup()
 {
     frameRate(10);
-    createCanvas(640, 480);
+    createCanvas(400, 600);
 
     snake.x = width/2;
     snake.y = height/2;

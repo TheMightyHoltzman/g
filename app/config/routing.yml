@@ -31,6 +31,18 @@ game_snake:
         _controller: FrameworkBundle:Template:template
         template:    pages/snake.html.twig
 
+game_sudoku_solver:
+    path: /games/sudoku-solver
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    pages/sudoku.html.twig
+
+game_test:
+    path: /games/test
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    pages/test.html.twig
+
 # app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
