@@ -37,6 +37,12 @@ game_sudoku_solver:
         _controller: FrameworkBundle:Template:template
         template:    pages/sudoku.html.twig
 
+game_mandelbrot:
+    path: /games/mandelbrot
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: pages/mandelbrot.html.twig
+
 game_test:
     path: /games/test
     defaults:
