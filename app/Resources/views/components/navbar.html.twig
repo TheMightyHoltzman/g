@@ -7,7 +7,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
                 <ul class="nav navbar-nav navbar-right">
-                    {{ dump(app.user.username) }}
                     <li><a href="/logout"><button type="button" class="btn btn-default navbar-btn">Sign out - {{ app.user.username }}</button></a></li>
                 </ul>
             {% endif %}
