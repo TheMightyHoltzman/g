@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/post")
+ * @Route("/admin/post")
  */
 class PostController extends Controller
 {
