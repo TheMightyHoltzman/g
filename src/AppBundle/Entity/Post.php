@@ -17,9 +17,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Post
 {
-    const CATEGORY_CARTOON = 'cartoon';
-    const CATEGORY_RANDOM  = 'random';
-    const CATEGORY_PRIVATE = 'private';
+    const CATEGORY_CARTOON     = 'cartoon';
+    const CATEGORY_RANDOM      = 'random';
+    const CATEGORY_PRIVATE     = 'private';
+    const CATEGORY_PROGRAMMING = 'programming';
 
     /**
      * @var int
@@ -403,6 +404,7 @@ class Post
             self::CATEGORY_CARTOON,
             self::CATEGORY_PRIVATE,
             self::CATEGORY_RANDOM,
+            self::CATEGORY_PROGRAMMING
         ];
     }
 }
