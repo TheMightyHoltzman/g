@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Zend\Code\Scanner\DirectoryScanner;
 
 class DefaultController extends Controller
 {
@@ -135,6 +136,22 @@ class DefaultController extends Controller
         $debug = 'BUG' . PHP_EOL;
         echo phpinfo();
         return new Response();
+    }
+
+    /**
+     * @Route("/games2/{name}", name="admin")
+     * @return Response
+     */
+    public function game2Action($name)
+    {
+        $gamesDir  = $this->get('kernel')->getRootDir() . '/../web/js/games';
+        $gamesDirs = scandir($gamesDir);
+
+        foreach ($gamesDirs as $gameDir) {
+            if ($name === $gameDir) {
+                // TODO
+            }
+        }
     }
 
     /**
