@@ -1,3 +1,9 @@
+var scl      = 40;
+var gameOver = false;
+
+var gridWidth  = 20;
+var gridHeight = 25;
+
 var snake    = {
     x: null,
     y: null,
@@ -7,20 +13,33 @@ var snake    = {
     },
     tail: []
 };
-var food     = {x: null, y:null};
-var scl      = 20;
 
-var gameOver = false;
+var food     = {x: null, y:null};
 
 function setup()
 {
     frameRate(10);
-    createCanvas(400, 600);
+    createCanvas(gridWidth*scl, gridHeight*scl);
 
-    snake.x = width/2;
-    snake.y = height/2;
-
+    // always use grid-values
+    snake.x = toGrid(width/2);
+    snake.y = toGrid(height/2);
     positionFood();
+}
+
+function toGrid(pixel)
+{
+    return Math.floor(pixel/scl);
+}
+
+function toPixel(grid)
+{
+    return scl*grid;
+}
+
+function paint(gridX, gridY)
+{
+    rect(toPixel(gridX), toPixel(gridY), scl, scl);
 }
 
 function draw() {
@@ -29,7 +48,7 @@ function draw() {
         fill(0);
         textFont();
         textSize(30);
-        text("Score:"+snake.tail.length, width/2, height/2);
+        text("Score:"+snake.tail.length, Math.floor(width/2), Math.floor(height/2));
         return;
     }
 
@@ -57,22 +76,22 @@ function draw() {
 
     // draw actual snake
     fill('white');
-    rect(snake.x, snake.y, scl, scl);
+    paint(snake.x, snake.y);
     for (var tailIndex = 0; tailIndex < snake.tail.length; tailIndex++) {
-        rect(snake.tail[tailIndex].x, snake.tail[tailIndex].y, scl, scl);
+        paint(snake.tail[tailIndex].x, snake.tail[tailIndex].y);
     }
 
     // draw food
     fill('red');
-    rect(food.x, food.y, scl, scl);
+    paint(food.x, food.y);
 }
 
 function calcX(xSpeed) {
-    return snake.x + xSpeed*scl;
+    return snake.x + xSpeed;
 }
 
 function calcY(ySpeed) {
-    return snake.y + ySpeed*scl;
+    return snake.y + ySpeed;
 }
 
 function collision(aX, aY, bX, bY) {
@@ -89,7 +108,7 @@ function hasCollision() {
             return true;
         }
         // edge-collision
-        if (snake.x < 0 || snake.y < 0 || snake.x > width || snake.y > height) {
+        if (snake.x < 0 || snake.y < 0 || snake.x > gridWidth || snake.y > gridHeight) {
             return true;
         }
     }
@@ -111,8 +130,8 @@ function positionFood() {
     var foodX = null;
     var foodY = null;
     while (foodX == null || snakeCollision(foodX, foodY)) {
-        foodX = floor(random(0, floor(width/scl)-1))*scl;
-        foodY = floor(random(0, floor(height/scl)-1))*scl;
+        foodX = Math.floor(random(0, gridWidth-1));
+        foodY = Math.floor(random(0, gridHeight-1));
     }
     food.x = foodX;
     food.y = foodY;
