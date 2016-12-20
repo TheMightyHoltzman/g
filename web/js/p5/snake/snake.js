@@ -1,44 +1,31 @@
-var scl      = 40;
-var gameOver = false;
-
+// render-variables
+var scl        = 30;
 var gridWidth  = 20;
 var gridHeight = 25;
 
-var snake    = {
-    x: null,
-    y: null,
-    dir: {
-        x: 1,
-        y: 0
-    },
-    tail: []
-};
+// game-variables
+var gameOver = false;
+var snake    = new Snake();
+var food     = new Food();
 
-var food     = {x: null, y:null};
-
-function setup()
-{
+function setup() {
     frameRate(10);
     createCanvas(gridWidth*scl, gridHeight*scl);
 
-    // always use grid-values
     snake.x = toGrid(width/2);
     snake.y = toGrid(height/2);
-    positionFood();
+    food.position(snake);
 }
 
-function toGrid(pixel)
-{
+function toGrid(pixel) {
     return Math.floor(pixel/scl);
 }
 
-function toPixel(grid)
-{
+function toPixel(grid) {
     return scl*grid;
 }
 
-function paint(gridX, gridY)
-{
+function paint(gridX, gridY) {
     rect(toPixel(gridX), toPixel(gridY), scl, scl);
 }
 
@@ -55,86 +42,118 @@ function draw() {
     // reset the whole thing again
     background(51);
 
-    // if it can eat
-    if (snake.x === food.x && snake.y === food.y) {
-        snake.tail.unshift({'x': snake.x, 'y': snake.y});
-        positionFood(); // reposition
-    }
-    else {
-        snake.tail.unshift({'x': snake.x, 'y': snake.y});
-        snake.tail.pop();
-    }
+   if(snake.eat(food.x, food.y)) {
+       food.position(snake);
+   }
 
     // update position
-    snake.x = calcX(snake.dir.x);
-    snake.y = calcY(snake.dir.y);
+    snake.calcX();
+    snake.calcY();
 
-    if (hasCollision()) {
-        console.log('dead');
-        gameOver = true;
-    }
+    gameOver = snake.hasCollision();
 
-    // draw actual snake
-    fill('white');
-    paint(snake.x, snake.y);
-    for (var tailIndex = 0; tailIndex < snake.tail.length; tailIndex++) {
-        paint(snake.tail[tailIndex].x, snake.tail[tailIndex].y);
-    }
-
-    // draw food
-    fill('red');
-    paint(food.x, food.y);
+    snake.render();
+    food.render();
 }
 
-function calcX(xSpeed) {
-    return snake.x + xSpeed;
-}
+function Snake() {
+    this.x    = null;
+    this.y    = null;
+    this.dir  = {x: 1,y: 0};
+    this.tail = [];
 
-function calcY(ySpeed) {
-    return snake.y + ySpeed;
-}
-
-function collision(aX, aY, bX, bY) {
-    if (aX === bX && aY === bY) {
-        return true;
-    }
-    return false;
-}
-
-function hasCollision() {
-    for (var tailIndex = 0; tailIndex < snake.tail.length; tailIndex++) {
-        // self-collision
-        if (collision(snake.x, snake.y, snake.tail[tailIndex].x, snake.tail[tailIndex].y)) {
+    this.eat = function(foodX, foodY) {
+        // if it can eat
+        if (this.x === foodX && this.y === foodY) {
+            this.tail.unshift({'x': this.x, 'y': this.y});
             return true;
         }
-        // edge-collision
-        if (snake.x < 0 || snake.y < 0 || snake.x > gridWidth || snake.y > gridHeight) {
-            return true;
+        else {
+            this.tail.unshift({'x': this.x, 'y': this.y});
+            this.tail.pop();
+            return false;
         }
-    }
+    };
+
+    this.calcX = function(xSpeed) {
+        return this.x + xSpeed;
+    };
+
+    this.calcY = function(ySpeed) {
+        return this.y + ySpeed;
+    };
+
+    this.collision = function(aX, aY, bX, bY) {
+        return aX === bX && aY === bY;
+    };
+
+    this.hasCollision = function() {
+        for (var tailIndex = 0; tailIndex < this.tail.length; tailIndex++) {
+            // self-collision
+            if (this.collision(this.x, this.y, this.tail[tailIndex].x, this.tail[tailIndex].y)) {
+                return true;
+            }
+            // edge-collision
+            if (this.x < 0 || this.y < 0 || this.x > gridWidth || this.y > gridHeight) {
+                return true;
+            }
+        }
+    };
+
+    this.render = function() {
+        paint(this.x, this.y);
+        for (var tailIndex = 0; tailIndex < this.tail.length; tailIndex++) {
+            paint(this.tail[tailIndex].x, this.tail[tailIndex].y);
+        }
+    };
 }
 
-function snakeCollision(x,y) {
-    if (collision(x, y, snake.x, snake.y)) {
-       return true;
-    }
-    for (var i = 0; i < snake.tail.length; i++) {
-        if (collision(x, y, snake.tail[i].x, snake.tail[i].y)) {
+function Food() {
+    this.x = null;
+    this.y = null;
+
+    this.position = function(snake) {
+        var foodX = this.randomX();
+        var foodY = this.randomY();
+
+        while (foodX == null || this.collides(snake)) {
+            foodX = this.randomX();
+            foodY = this.randomY();
+        }
+        this.x = foodX;
+        this.y = foodY;
+    };
+
+    this.randomX = function() {
+        return Math.floor(random(0, gridWidth-1));
+    };
+
+    this.randomY = function() {
+        Math.floor(random(0, gridHeight-1));
+    };
+
+    this.collides = function(snake) {
+        if (this.collision(snake.x, snake.y)) {
             return true;
         }
-    }
-    return false;
-}
+        else {
+            for(var i = 0; i < snake.tail.length; i++) {
+                if (this.collision(snake.tail[i].x, this.x, snake.tail[i].y, this.y)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
 
-function positionFood() {
-    var foodX = null;
-    var foodY = null;
-    while (foodX == null || snakeCollision(foodX, foodY)) {
-        foodX = Math.floor(random(0, gridWidth-1));
-        foodY = Math.floor(random(0, gridHeight-1));
+    this.collision = function(aX, aY, bX, bY) {
+        return aX === bX && aY === bY;
+    };
+
+    this.render = function() {
+        fill('red');
+        paint(this.x, this.y);
     }
-    food.x = foodX;
-    food.y = foodY;
 }
 
 function keyPressed() {
