@@ -43,6 +43,12 @@ game_mandelbrot:
         _controller: FrameworkBundle:Template:template
         template: pages/mandelbrot.html.twig
 
+game_metaball:
+    path: /games/metaball
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: pages/metaball.html.twig
+
 game_test:
     path: /games/test
     defaults:
