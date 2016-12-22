@@ -94,7 +94,7 @@ function Snake() {
                 return true;
             }
             // edge-collision
-            if (this.x < 0 || this.y < 0 || this.x > gridWidth || this.y > gridHeight) {
+            if (this.x < 0 || this.y < 0 || this.x >= gridWidth || this.y >= gridHeight) {
                 return true;
             }
         }
