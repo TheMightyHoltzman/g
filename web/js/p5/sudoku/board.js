@@ -9,6 +9,7 @@ function Board(cells, aSize) {
     this.size    = aSize;
     this.solved  = false;
     this.stack   = [];
+    this.solvedNr = 0;
 
     this.setup = function(cells) {
         for(var i = 0; i < this.size; i++) {
@@ -40,13 +41,7 @@ function Board(cells, aSize) {
                 var val = this.getCell(i, j).val;
                 stroke('black');
                 textSize(20);
-                fill('white');
-                if (this.getCell(i,j).solved) {
-                    fill('yellow');
-                }
-                if (this.current.row == i && this.current.col == j) {
-                    fill('green');
-                }
+                this.setColor(i, j);
                 rect(i*scl, j*scl, scl, scl);
 
                 if (val != null) {
@@ -55,6 +50,18 @@ function Board(cells, aSize) {
                 }
             }
         }
+    };
+
+    this.setColor = function(i, j) {
+          if (this.getCell(i, j).solved) {
+              fill(color(255, 204, this.getCell(i,j).solvedNr));
+          }
+          else if (this.current.row === i && this.current.col === j) {
+              fill('green');
+          }
+        else {
+              fill('white');
+          }
     };
 
     this.solve = function() {
@@ -82,6 +89,7 @@ function Board(cells, aSize) {
         if (this.getCell(col, row).possibilities.length == 1) {
             this.cells[col][row].val    = this.getCell(col, row).possibilities[0];
             this.cells[col][row].solved = true;
+            this.cells[col][row].solvedNr = 50 + (++this.solvedNr)*5;
             return true;
         }
         return false;

@@ -5,6 +5,7 @@ function Cell(col, row, val)
     this.val = val;
     this.possibilities = val !== null ? [] : [1,2,3,4,5,6,7,8,9];
     this.solved = false;
+    this.solvedNr = 0;
 
     this.removePossibility = function(val) {
         var index = this.possibilities.indexOf(val);
