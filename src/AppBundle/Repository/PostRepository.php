@@ -34,4 +34,9 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults(self::MAX_RESULTS)
             ->setFirstResult($page*self::MAX_RESULTS);
     }
+
+    public function getCartoonNeighbours($id)
+    {
+        return null;
+    }
 }

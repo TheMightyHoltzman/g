@@ -18,7 +18,6 @@
 body {
     margin-top: 100px;
     font-family: "Aref Ruqaa";
-    background-color: rgba(255, 217, 10, 0.68);
 }
 
 h4 {
@@ -27,7 +26,6 @@ h4 {
 
 .glog-navbar {
     color: #ffffff;
-    background-color: #8893cc;
     height: 80px;
 }
 
@@ -39,8 +37,8 @@ h4 {
     padding-top: 35px;
 }
 
-.glog-heading {
-    font-family: Monofett;
+.glog-header {
+    font-family: "Pacifico";
     font-size: 45px;
     padding-top: 25px;
     color: #ffffff;
