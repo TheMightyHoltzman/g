@@ -16,7 +16,7 @@
 }
 
 body {
-    margin-top: 130px; /* offset from navbar */
+    margin-top: 15%; /* offset from navbar */
     font-family: "Aref Ruqaa";
 }
 
@@ -38,7 +38,6 @@ h4 {
 }
 
 .glog-header {
-    font-family: "Pacifico";
     font-size: 45px;
     padding: 0 0 0 15%;
     color: #ffffff;
@@ -61,7 +60,7 @@ h4 {
 }
 
 .glog-icon {
-    height: 130px;
+    height: 120px;
 }
 
 /* BOOTSTRAP-CUSTOMIZATIONS */
