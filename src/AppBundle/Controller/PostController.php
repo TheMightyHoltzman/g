@@ -61,8 +61,11 @@ class PostController extends Controller
             $post = $form->getData();
             $post->setUpdatedAt(new \DateTime());
 
-            if (true === $post->getIsPublished() && null === $post->getPublishedAt()) {
+            if (true === $post->getIsPublished()) {
                 $post->setPublishedAt(new \DateTime());
+            }
+            elseif ($post->getPublishedAt()) {
+                $post->setPublishedAt(null);
             }
 
             $this->getDoctrine()->getManager()->persist($post);
