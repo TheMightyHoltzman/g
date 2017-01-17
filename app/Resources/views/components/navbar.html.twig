@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default navbar-fixed-top glog-navbar">
-    <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand glog-header" href="{{ path('homepage') }}">The Mighty Glog</a>
+            <a class="navbar-brand glog-header" href="{{ path('homepage') }}">
+                <img src="{{ asset('images/glog_icon_full.png') }}">
+            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -11,5 +12,4 @@
                 </ul>
             {% endif %}
         </div>
-    </div>
 </nav>
