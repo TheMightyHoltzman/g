@@ -20,7 +20,7 @@ class PostType extends AbstractType
             ->add('isPublished')
             ->add('tags')
             ->add('title')
-            ->add('text', 'textarea', ['attr' => array('style' => 'height: 150px;')])
+            ->add('text', 'ckeditor', ['attr' => array('style' => 'height: 150px;')])
             ->add('category', ChoiceType::class, [
                 'choices' => array_combine(Post::getCategories(), Post::getCategories()),
             ])

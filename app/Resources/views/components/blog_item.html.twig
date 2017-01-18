@@ -7,7 +7,7 @@
                 <span class="glog-date" style="text-align: right;">{{ post.publishedAt|date("m/d/Y") }}</span>
             </p>
             <p class="glog-blog-teaser">
-                {{ macros.cut(post.text) }}
+                {{ post.text|raw }}
             </p>
     </div>
     <div class="col-md-6 col-pic">
