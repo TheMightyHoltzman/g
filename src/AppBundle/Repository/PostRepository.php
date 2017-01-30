@@ -35,7 +35,22 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             ->setFirstResult($page*self::MAX_RESULTS);
     }
 
-    public function getCartoonNeighbours($id)
+    public function getLatest($category = 'cartoon')
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere("NOT EXISTS (select * from post p where p.isPublished=true and p.category='$category' p.id > b.id)")
+            ->getQuery()->getResult();
+    }
+
+    public function getNeighbours($id, $category = 'cartoon')
+    {
+        $previous = $this->getEntityManager()->createQuery("SELECT max(p.id) as id FROM AppBundle:Post p where p.isPublished = TRUE and p.category='$category' and p.id < $id")->getSingleScalarResult();
+        $next     = $this->getEntityManager()->createQuery("SELECT min(p.id) as id FROM AppBundle:Post p where p.isPublished = TRUE and p.category='$category' and p.id > $id")->getSingleScalarResult();
+
+        return ['previous' => $previous, 'next' => $next];
+    }
+
+    public function getRandom($category = 'cartoon')
     {
         return null;
     }

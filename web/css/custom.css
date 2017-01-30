@@ -34,7 +34,7 @@ h4 {
 }
 
 .glog-list-item .col-info {
-    padding-top: 35px;
+    padding-top: 15px;
 }
 
 .glog-header {
@@ -61,6 +61,19 @@ h4 {
 
 .glog-icon {
     height: 120px;
+}
+
+.glog-image-centered {
+    margin: 0 auto;
+    max-width: 600px
+}
+
+.glog-cartoon-nav {
+    margin: 0 auto;
+}
+
+.glog-cartoon-nav a {
+    margin: 0 auto;
 }
 
 /* BOOTSTRAP-CUSTOMIZATIONS */

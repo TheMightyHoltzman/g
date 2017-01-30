@@ -20,7 +20,10 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/base_frontend.html.twig');
+        $latest     = $this->getPostRepo()->getLatest();
+        $neighbours = $this->getPostRepo()->getNeighbours($latest->getId());
+
+        return $this->render('default/cartoon.html.twig', ['latest' => $latest, 'neighbours' => $neighbours]);
     }
 
     /**
@@ -47,23 +50,37 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/cartoon/{slug}", name="post_show")
+     * @Route("/cartoon/random", name="cartoon_random")
+     * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function randomAction()
+    {
+        $random = $this->getPostRepo()->getRandom();
+        $neighbours = $this->getNeighbours($random->getId());
+
+    }
+
+    /**
+     * @Route("/cartoon/{id}", requirements={"id" = "\d+"}, name="cartoon_id")
+     * @param $id
+     * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function idAction($id)
+    {
+        return $this->getCartoon($id);
+    }
+
+    /**
+     * @Route("/cartoon/{slug}", name="cartoon_slug")
      * @param $slug
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction($slug)
+    public function slugAction($slug)
     {
-        $post = $this->getPostRepo()->findOneBy(array(
-            "slug"          => $slug,
-            "isPublished" => true,
-        ));
-
-        if (null === $post) {
-            throw new NotFoundHttpException('Blog entry could not be found');
-        }
-
-        return $this->render('pages/blog_item.html.twig', array('post' => $post));
+        return $this->getCartoon($slug);
     }
 
     /**
@@ -88,8 +105,7 @@ class DefaultController extends Controller
      * @param int $page
      * @return Response
      */
-    public function cartoonList($page = 1)
-    {
+    public function cartoonList($page = 1) {
         $page  = $page >= 0 ? $page : 1;
         $posts = $this->getPostRepo()->getBlogPaginator($page, Post::CATEGORY_CARTOON);
 
@@ -101,8 +117,7 @@ class DefaultController extends Controller
      * @param $page
      * @return Response
      */
-    public function listAction($page = 1)
-    {
+    public function listAction($page = 1) {
         $page  = $page >= 0 ? $page : 1;
         $posts = $this->getPostRepo()->getBlogPaginator($page);
 
@@ -157,8 +172,40 @@ class DefaultController extends Controller
     /**
      * @return PostRepository
      */
-    private function getPostRepo()
-    {
+    private function getPostRepo() {
         return $this->getDoctrine()->getRepository('AppBundle:Post');
     }
+
+    /**
+     * Finds and renders a cartoon
+     *
+     * @param $id
+     * @return Response
+     */
+    private function getCartoon($id) {
+
+        if ('latest' === $id) {
+            $post = $this->getPostRepo()->getLatest();
+        }
+        elseif ('random' === $id) {
+            $post = $this->getPostRepo()->getRandom();
+        }
+        elseif (!is_numeric($id)) {
+            $params = ["slug" => $id, "isPublished" => true];
+            $post = $this->getPostRepo()->findOneBy($params);
+        }
+        else {
+            $params = ["id" => $id, "isPublished" => true];
+            $post = $this->getPostRepo()->findOneBy($params);
+        }
+
+        if (null === $post) {
+            throw new NotFoundHttpException('Blog entry could not be found');
+        }
+
+        $neighbours = $this->getPostRepo()->getNeighbours($post->getId());
+
+        return $this->render('pages/cartoon.html.twig', array('post' => $post, 'neighbours' => $neighbours));
+    }
 }
+

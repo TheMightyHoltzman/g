@@ -109,5 +109,4 @@ class PostController extends Controller
             'page' => 1,
         )));
     }
-
 }

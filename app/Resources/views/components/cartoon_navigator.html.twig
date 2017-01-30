@@ -1,0 +1,9 @@
+<div class="glog-cartoon-nav">
+    {% if not neighbours['previous'] is empty %}
+        <a href="{{ path('cartoon_id', {'id': neighbours['previous']}) }}">previous</a>
+    {% endif %}
+        <a href="{{ path('cartoon_random') }}">random</a>
+    {% if not neighbours['next'] is empty %}
+        <a href="{{ path('cartoon_id', {'id': neighbours['next']}) }}">next</a>
+    {% endif %}
+</div>
