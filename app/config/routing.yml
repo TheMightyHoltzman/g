@@ -2,28 +2,30 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-homepage:
-    path: /
-    defaults:
-        _controller: AppBundle:Default:list
-
 about:
     path: /about
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    static/about.html.twig
+        template:    default/about.html.twig
 
 contact:
     path: /contact
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    static/contact.html.twig
+        template:    default/contact.html.twig
 
 also_of_interest:
     path: /also-of-interest
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    static/also-of-interest.html.twig
+        template:    default/also-of-interest.html.twig
+
+about:
+    path: /about
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    default/jazz.html.twig
+
 
 game_snake:
     path: /games/snake

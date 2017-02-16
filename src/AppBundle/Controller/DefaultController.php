@@ -20,23 +20,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $latest     = $this->getPostRepo()->getLatest();
-        $neighbours = $this->getPostRepo()->getNeighbours($latest->getId());
-
-        echo 'here';
-
-        return $this->render('default/cartoon.html.twig', ['latest' => $latest, 'neighbours' => $neighbours]);
-    }
-
-    /**
-     * @Route("/start", name="start")
-     */
-    public function startAction(Request $request)
-    {
-        $latest     = $this->getPostRepo()->getLatest();
-        $neighbours = $this->getPostRepo()->getNeighbours($latest->getId());
-
-        return $this->render('pages/cartoon.html.twig', ['post' => $latest, 'neighbours' => $neighbours]);
+        return $this->redirect('/cartoon/latest');
     }
 
     /**
@@ -63,19 +47,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/cartoon/random", name="cartoon_random")
-     * @return Response
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     */
-    public function randomAction()
-    {
-        $random = $this->getPostRepo()->getRandom();
-        $neighbours = $this->getNeighbours($random->getId());
-
-    }
-
-    /**
-     * @Route("/cartoon/{id}", requirements={"id" = "\d+"}, name="cartoon_id")
+     * @Route("/cartoon/{id}", name="cartoon_id")
      * @param $id
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -201,6 +173,7 @@ class DefaultController extends Controller
             $post = $this->getPostRepo()->getLatest();
         }
         elseif ('random' === $id) {
+
             $post = $this->getPostRepo()->getRandom();
         }
         elseif (!is_numeric($id)) {
@@ -217,8 +190,12 @@ class DefaultController extends Controller
         }
 
         $neighbours = $this->getPostRepo()->getNeighbours($post->getId());
+        $random     = $this->getPostRepo()->getRandom($excluded=[$post->getId()]);
 
-        return $this->render('pages/cartoon.html.twig', array('post' => $post, 'neighbours' => $neighbours));
+        return $this->render('pages/cartoon.html.twig', array(
+            'post'       => $post,
+            'neighbours' => $neighbours,
+            'random'     => $random));
     }
 }
 

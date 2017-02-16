@@ -4,7 +4,7 @@
                 <img src="{{ asset('/images/glog_nav_previous.png') }}" alt="previous">
         </a>
     {% endif %}
-        <a href="{{ path('cartoon_random') }}">
+        <a href="{{ path('cartoon_id', {'id': 'random'}) }}">
                 <img src="{{ asset('/images/glog_nav_random.png') }}" alt="random">
         </a>
     {% if not neighbours['next'] is empty %}
@@ -13,3 +13,4 @@
         </a>
     {% endif %}
 </div>
+{% include ':components:sharebar.html.twig'  %}

@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
@@ -51,8 +52,20 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return ['previous' => $previous, 'next' => $next];
     }
 
-    public function getRandom($category = 'cartoon')
+    public function getRandom($category = 'cartoon', $exclude = [])
     {
-        return $this->createQueryBuilder();
+        # set entity name
+        $table = $this->getClassMetadata()
+            ->getTableName();
+
+        # create rsm object
+        $rsm = new ResultSetMapping();
+        $rsm->addEntityResult($this->getEntityName(), 'p');
+        $rsm->addFieldResult('p', 'id', 'id');
+
+        # make query
+        /** @noinspection SqlResolve */
+        $id = $this->getEntityManager()->createNativeQuery("SELECT p.id FROM {$table} p ORDER BY RAND() LIMIT 0, 1", $rsm)->getSingleResult();
+        return $this->findOneBy(['id' => $id]);
     }
 }

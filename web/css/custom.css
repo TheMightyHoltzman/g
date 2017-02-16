@@ -79,6 +79,18 @@ h4 {
     margin: 0 auto;
 }
 
+.glog-parallax {
+     /* add image to div like style="background-image: url('pic.png');" */
+     /* Set a specific height */
+     height: 500px;
+
+     /* Create the parallax scrolling effect */
+     background-attachment: fixed;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
 /* BOOTSTRAP-CUSTOMIZATIONS */
 .navbar-header {
     height: inherit;
