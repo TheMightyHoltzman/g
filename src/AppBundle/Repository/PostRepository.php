@@ -37,9 +37,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 
     public function getLatest($category = 'cartoon')
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere("NOT EXISTS (select * from post p where p.isPublished=true and p.category='$category' p.id > b.id)")
-            ->getQuery()->getResult();
+        return $this->findOneBy(
+            array('category'=>$category),
+            array('publishedAt' => 'DESC')
+        );;
     }
 
     public function getNeighbours($id, $category = 'cartoon')
@@ -52,6 +53,6 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
 
     public function getRandom($category = 'cartoon')
     {
-        return null;
+        return $this->createQueryBuilder();
     }
 }

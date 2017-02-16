@@ -23,7 +23,20 @@ class DefaultController extends Controller
         $latest     = $this->getPostRepo()->getLatest();
         $neighbours = $this->getPostRepo()->getNeighbours($latest->getId());
 
+        echo 'here';
+
         return $this->render('default/cartoon.html.twig', ['latest' => $latest, 'neighbours' => $neighbours]);
+    }
+
+    /**
+     * @Route("/start", name="start")
+     */
+    public function startAction(Request $request)
+    {
+        $latest     = $this->getPostRepo()->getLatest();
+        $neighbours = $this->getPostRepo()->getNeighbours($latest->getId());
+
+        return $this->render('pages/cartoon.html.twig', ['post' => $latest, 'neighbours' => $neighbours]);
     }
 
     /**

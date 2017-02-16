@@ -6,5 +6,5 @@
     <div class="row">
         <img src="{{ macros.image_pth(post.imageName, 'cartoons') }}" class="img-responsive glog-image-centered" alt="{{ post.imageName}}"/>
     </div>
-
+    {% include ':components:cartoon_navigator.html.twig' with {'neighbours': neighbours} %}
 {% endblock %}
