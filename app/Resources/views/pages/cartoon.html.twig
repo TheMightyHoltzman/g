@@ -1,10 +1,24 @@
 {% extends 'base.html.twig' %}
 {% import 'default/macros.html.twig' as macros %}
 
+{% set url = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+
+{% block meta %}
+    {{ macros.open_graph(
+        url,
+        post.title,
+        'article',
+        'Latest cartoon from The Mighty Glog!',
+        macros.image_pth(post.imageName, 'cartoons', true)
+    ) }}
+    <meta name="date" content="{{ post.publishedAt|date('c') }}">
+{% endblock %}
+
 {% block body %}
     {% include ':components:cartoon_navigator.html.twig' with {'neighbours': neighbours} %}
     <div class="row">
         <img src="{{ macros.image_pth(post.imageName, 'cartoons') }}" class="img-responsive glog-image-centered" alt="{{ post.imageName}}"/>
     </div>
     {% include ':components:cartoon_navigator.html.twig' with {'neighbours': neighbours} %}
+    {% include ':components:sharebar.html.twig' with {'url': url} %}
 {% endblock %}

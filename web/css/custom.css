@@ -65,7 +65,7 @@ h4 {
 
 .glog-image-centered {
     margin: 0 auto;
-    max-width: 600px
+    /* max-width: 600px */
 }
 
 .glog-cartoon-nav {
@@ -99,4 +99,9 @@ h4 {
 
 .navbar-brand {
     height: inherit;
+}
+
+/* HELPERS */
+.centered {
+    text-align: center;
 }

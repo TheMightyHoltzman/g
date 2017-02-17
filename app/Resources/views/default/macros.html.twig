@@ -10,6 +10,18 @@
     {{ text|length > limit ? text|slice(0, limit) ~ '...' : text  }}
 {% endmacro %}
 
-{% macro image_pth(file_name, source) %}
-/images/{{ source }}/{{ file_name }}
+{% macro image_pth(file_name, source, abs = false) %}
+    {% if abs %}
+        {{ url('homepage') }}/images/{{ source }}/{{ file_name }}
+    {% else %}
+        /images/{{ source }}/{{ file_name }}
+    {% endif %}
+{% endmacro %}
+
+{% macro open_graph(url, title, type, description, image) %}
+    <meta property="og:url"                content="{{ url }}" />
+    <meta property="og:type"               content="{{ type }}" />
+    <meta property="og:title"              content="{{ title }}" />
+    <meta property="og:description"        content="{{ description }}" />
+    <meta property="og:image"              content="{{ image }}" />
 {% endmacro %}

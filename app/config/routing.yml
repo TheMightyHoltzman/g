@@ -20,8 +20,8 @@ also_of_interest:
         _controller: FrameworkBundle:Template:template
         template:    default/also-of-interest.html.twig
 
-about:
-    path: /about
+jazz:
+    path: /jazz
     defaults:
         _controller: FrameworkBundle:Template:template
         template:    default/jazz.html.twig
