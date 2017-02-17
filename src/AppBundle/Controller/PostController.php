@@ -26,6 +26,14 @@ class PostController extends Controller
             $post = $form->getData();
             $post->setCreatedAt(new \DateTime())->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->persist($post);
+
+            if (true === $post->getIsPublished()) {
+                $post->setPublishedAt(new \DateTime());
+            }
+            elseif ($post->getPublishedAt()) {
+                $post->setPublishedAt(null);
+            }
+            
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->container->get('router')->generate('post_edit', array('id' => $post->getId())));
