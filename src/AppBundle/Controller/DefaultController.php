@@ -7,6 +7,7 @@ use AppBundle\Repository\PostRepository;
 use FOS\UserBundle\Model\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +30,35 @@ class DefaultController extends Controller
     public function pingAction(Request $request)
     {
         return new JsonResponse('success', 200);
+    }
+
+    /**
+     * @Route("/secure-cv")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getCVAction(Request $request)
+    {
+        if ('GET' === $request->getMethod()) {
+            // TODO flash messages
+            return $this->redirect('/professional');
+        }
+        if ('POST' === $request->getMethod()) {
+            $language = $request->request->get('language');
+            // check if they have the proper language
+            if (!in_array($language, array('EN', 'DE'))) {
+                // TODO flash messages
+                return $this->redirect('/professional');
+            }
+            // check if they have the proper password
+            if (!in_array($request->request->get('password'), array('123', '234'))) {
+                // TODO flash messages
+                return $this->redirect('/professional');
+            }
+
+            $path = $this->get('kernel')->getRootDir() . '/Resources/cv/Heiko_Mattern_resume.pdf';
+            return new BinaryFileResponse($path, 200, array('Content-Type' => 'application/pdf'));
+        }
     }
 
     /**

@@ -8,6 +8,12 @@ about:
         _controller: FrameworkBundle:Template:template
         template:    default/about.html.twig
 
+professional:
+    path: /professional
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    default/professional.html.twig
+
 contact:
     path: /contact
     defaults:
@@ -25,37 +31,6 @@ jazz:
     defaults:
         _controller: FrameworkBundle:Template:template
         template:    default/jazz.html.twig
-
-
-game_snake:
-    path: /games/snake
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template:    pages/snake.html.twig
-
-game_sudoku_solver:
-    path: /games/sudoku-solver
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template:    pages/sudoku.html.twig
-
-game_mandelbrot:
-    path: /games/mandelbrot
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template: pages/mandelbrot.html.twig
-
-game_metaball:
-    path: /games/metaball
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template: pages/metaball.html.twig
-
-game_test:
-    path: /games/test
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template:    pages/test.html.twig
 
 # app/config/routing.yml
 fos_user:
