@@ -33,7 +33,7 @@ class PostController extends Controller
             elseif ($post->getPublishedAt()) {
                 $post->setPublishedAt(null);
             }
-            
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->container->get('router')->generate('post_edit', array('id' => $post->getId())));

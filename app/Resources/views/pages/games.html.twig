@@ -1,0 +1,20 @@
+{% extends ":default:base_frontend.html.twig" %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            text-align: center;
+        }
+        canvas {
+            display: inline;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {% for gamefile in gamefiles %}
+        <script src="{{ gamefile }}"></script>
+    {% endfor %}
+{% endblock %}

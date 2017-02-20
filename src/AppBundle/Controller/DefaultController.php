@@ -139,19 +139,41 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/games2/{name}", name="admin")
+     * @Route("/games/{name}", name="games")
      * @return Response
      */
-    public function game2Action($name)
+    public function gamesAction($name)
     {
-        $gamesDir  = $this->get('kernel')->getRootDir() . '/../web/js/games';
-        $gamesDirs = scandir($gamesDir);
+        $games = [
+            'sudoku'        => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/sudoku/cell.js",
+                "/js/p5/sudoku/board.js",
+                "/js/p5/sudoku/sudoku-solver.js",
+            ],
+            'mandelbrot'    => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/mandelbrot.js",
+            ],
+            'snake'         => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/snake/snake.js",
+            ],
+            'test'          => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/test/test.js",
+            ],
+            'metaball'      => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/metaball/metaball.js",
+            ],
+        ];
 
-        foreach ($gamesDirs as $gameDir) {
-            if ($name === $gameDir) {
-                // TODO
-            }
+        if (! array_key_exists($name, $games)) {
+            throw new NotFoundHttpException();
         }
+
+        return $this->render('pages/games.html.twig', ['gamefiles' => $games[$name]]);
     }
 
     /**
