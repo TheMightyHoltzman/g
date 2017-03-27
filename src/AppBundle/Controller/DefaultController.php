@@ -40,19 +40,19 @@ class DefaultController extends Controller
     public function getCVAction(Request $request)
     {
         if ('GET' === $request->getMethod()) {
-            // TODO flash messages
+            $this->addFlash('error', 'You don\'t have the necessary credentials to access this content.');
             return $this->redirect('/professional');
         }
         if ('POST' === $request->getMethod()) {
             $language = $request->request->get('language');
             // check if they have the proper language
             if (!in_array($language, array('EN', 'DE'))) {
-                // TODO flash messages
+                $this->addFlash('error', 'Wrong language');
                 return $this->redirect('/professional');
             }
             // check if they have the proper password
             if (!in_array($request->request->get('password'), array('123', '234'))) {
-                // TODO flash messages
+                $this->addFlash('error', 'Sorry, this is an invalid password :-(');
                 return $this->redirect('/professional');
             }
 

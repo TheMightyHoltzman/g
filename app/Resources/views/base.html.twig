@@ -12,8 +12,8 @@
         <link href="https://fonts.googleapis.com/css?family=Pacifico|Rubik+Mono+One|Fira+Mono|Monofett" rel="stylesheet">
     </head>
     <body>
+        {% include 'components/navbar.html.twig' %}
         <div class="container">
-            {% include 'components/navbar.html.twig' %}
             {% include 'components/flash_notifications.html.twig' %}
             {% block body %}{% endblock %}
             {# {% include 'components/footer.html.twig' %} #}

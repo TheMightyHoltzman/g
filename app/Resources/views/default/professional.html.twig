@@ -4,7 +4,7 @@
 
 {% block body %}
     <p>
-        Even though this is mainly a cartoon blog, I am, by profession, a software developer - and a happy one at that.
+        Even though this is mainly a cartoon blog, I am, by profession, a software developer - and a happy one at that.<br>
         I have worked with quite a few programming languages in my career.<br>
         I have settled on web development for the last couple of years, mainly (but not exclusively) with the LEMP-Stack and increasing
         amounts of node.js, but am interested in most aspects of Software Development and Delivery.<br>
@@ -13,17 +13,32 @@
     <p>
         Please enter the code you find on the backside of my card to enable the download of my CV:
         <form action="/secure-cv" method="post" name="cv_password" >
-            <label for="Password"></label>
-            <input name="password">
-            <select name="language">
-                <option>EN</option>
-                <option>DE</option>
-            </select>
-            <button type="submit"></button>
+            <div class="form-group" style="max-width: 200px;">
+                <label for="Password">Password</label>
+                <input class="form-control" name="password">
+            </div>
+            <div class="form-group" style="max-width: 200px;">
+                <label for="language">Language</label>
+                <select class="form-control" name="language">
+                    <option>EN</option>
+                    <option>DE</option>
+                </select>
+            </div>
+            <button class="btn btn-default" type="submit">Submit</button>
         </form>
     </p>
     <p>
         Why, you may ask, do you not put your CV on the site without securing it? Well, firstly, because I am
         sort of sensitive when it comes to putting out private information and secondly, because I can.
+    </p>
+    <p>
+        Here are a couple of toy-projects I've been working on:
+        <h4>p5.js</h4>
+        <p>p5 is a graphics library written in - you guessed it right: javascript. This guy <a href="https://www.youtube.com/user/shiffman">Daniel Shiffman</a> makes
+        some amazing things with it and I just had to try it out for myself:</p>
+        <ul>
+            <li><a href="/games/sudoku">a Sudoku-Solver</a></li>
+            <li><a href="/games/snake">Snake-Game</a></li>
+        </ul>
     </p>
 {% endblock %}
