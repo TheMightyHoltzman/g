@@ -47,13 +47,12 @@ function draw() {
    }
 
     // update position
-    snake.calcX();
-    snake.calcY();
+    snake.move();
 
     gameOver = snake.hasCollision();
 
-    snake.render();
-    food.render();
+    snake.render('white');
+    food.render('red');
 }
 
 function Snake() {
@@ -75,12 +74,9 @@ function Snake() {
         }
     };
 
-    this.calcX = function(xSpeed) {
-        return this.x + xSpeed;
-    };
-
-    this.calcY = function(ySpeed) {
-        return this.y + ySpeed;
+    this.move = function() {
+        this.x += this.dir.x;
+        this.y += this.dir.y;
     };
 
     this.collision = function(aX, aY, bX, bY) {
@@ -101,6 +97,7 @@ function Snake() {
     };
 
     this.render = function() {
+        fill('white');
         paint(this.x, this.y);
         for (var tailIndex = 0; tailIndex < this.tail.length; tailIndex++) {
             paint(this.tail[tailIndex].x, this.tail[tailIndex].y);
@@ -113,23 +110,15 @@ function Food() {
     this.y = null;
 
     this.position = function(snake) {
-        var foodX = this.randomX();
-        var foodY = this.randomY();
-
-        while (foodX == null || this.collides(snake)) {
-            foodX = this.randomX();
-            foodY = this.randomY();
+      this.x = null;
+        while (this.x == null || this.collides(snake)) {
+            this.x = this.random(gridWidth);
+            this.y = this.random(gridHeight);
         }
-        this.x = foodX;
-        this.y = foodY;
     };
 
-    this.randomX = function() {
-        return Math.floor(random(0, gridWidth-1));
-    };
-
-    this.randomY = function() {
-        Math.floor(random(0, gridHeight-1));
+    this.random = function(max) {
+        return Math.floor(random(0, max - 1));
     };
 
     this.collides = function(snake) {
@@ -172,7 +161,7 @@ function keyPressed() {
         attemptedDir.y = 0;
     }
 
-    if (snake.tail.length > 0 && calcX(attemptedDir.x) === snake.tail[0].x && calcY(attemptedDir.y) === snake.tail[0].y) {
+    if (snake.tail.length > 0 && snake.x + attemptedDir.x === snake.tail[0].x && snake.y + attemptedDir.y === snake.tail[0].y) {
         console.log('invalid change');
     }
     else {
