@@ -1,0 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Home of the GLOG{% endblock %}
+
+{% block body %}
+    <a href="{{ path('post_list', {'page': 1}) }}">Go to the list</a>
+{% endblock %}

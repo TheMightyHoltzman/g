@@ -15,6 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 class PostController extends Controller
 {
     /**
+     * @Route("/home", name="post_home")
+     */
+    public function homeAction(Request $request)
+    {
+        return $this->render('AppBundle:Post:home.html.twig');
+    }
+
+    /**
      * @Route("/create", name="post_create")
      */
     public function createAction(Request $request)

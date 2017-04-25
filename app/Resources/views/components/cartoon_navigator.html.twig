@@ -1,15 +1,9 @@
 <div class="glog-cartoon-nav">
     {% if not neighbours['previous'] is empty %}
-        <a href="{{ path('cartoon_id', {'id': neighbours['previous']}) }}">
-                <img src="{{ asset('/images/glog_nav_previous.png') }}" alt="previous">
-        </a>
+        <a class="btn btn-default btn-sm" href="{{ path('cartoon_id', {'id': neighbours['previous']}) }}">Previous</a>
     {% endif %}
-        <a href="{{ path('cartoon_id', {'id': 'random'}) }}">
-                <img src="{{ asset('/images/glog_nav_random.png') }}" alt="random">
-        </a>
+        <a class="btn btn-default btn-sm" href="{{ path('cartoon_id', {'id': 'random'}) }}">RANDOM</a>
     {% if not neighbours['next'] is empty %}
-        <a href="{{ path('cartoon_id', {'id': neighbours['next']}) }}">
-                <img src="{{ asset('/images/glog_nav_next.png') }}" alt="next">
-        </a>
+        <a class="btn btn-default btn-sm" href="{{ path('cartoon_id', {'id': neighbours['next']}) }}">Next</a>
     {% endif %}
 </div>

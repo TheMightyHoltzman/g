@@ -10,11 +10,11 @@ function setup() {
 
 function draw() {
     background(51);
-    for (var index = 0; index < 9; index++) {
+    for (var i = 0; i < 9; i++) {
         for(var j = 0; j < 9; j++) {
             stroke('white');
             textSize(20);
-            text('(' + i + ',' + j + ')', i*60 +5, j*60+5);
+            text('(' + i + ',' + j + ')', i*60 +10, j*60+30);
         }
     }
 }
