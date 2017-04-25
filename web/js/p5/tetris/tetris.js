@@ -70,7 +70,7 @@ function hasCollision() {
     for (var j = 0; j < boulder.shape[boulder.rotation].length; j++) {
       var brickX = boulder.x + boulder.shape[boulder.rotation][j].x;
       var brickY = boulder.y + boulder.shape[boulder.rotation][j].y + 1;
-      if (grid[brickX][brickY]) {
+      if (brickY === gridHeight || grid[brickX][brickY]) {
         boulder.iterator(function(x,y) {
           grid[x][y] = true;
         });
@@ -83,18 +83,18 @@ function hasCollision() {
 function Board() {
 
   this.setup = function() {
-    for (var i = 0; i < gridWidth; i++) {
+    for (var i = 0; i < gridHeight; i++) {
       grid[i] = [];
-      for (var j = 0; j <= gridHeight; j++) {
-        grid[i][j] = j === gridHeight;
+      for (var j = 0; j < gridWidth; j++) {
+        grid[i][j] = false;
       }
     }
   };
 
   this.render = function() {
     fill('yellow');
-    for (var i = 0; i < gridWidth; i++) {
-      for (var j = 0; j < gridHeight; j++) {
+    for (var i = 0; i < gridHeight; i++) {
+      for (var j = 0; j < gridWidth; j++) {
         if (grid[i][j]) {
           paint(i, j);
         }
@@ -104,28 +104,28 @@ function Board() {
 
   this.cancelRows = function() {
     var rows = [];
-    for (var i = 0; i < gridWidth; i++) {
+    for (var row = 0; row < gridWidth; row++) {
       var cancel = true;
-      for (var j = 0; j < gridHeight; j++) {
-        if (!grid[i][j]) {
+      for (var col = 0; col < gridWidth; col++) {
+        if (!grid[col][row]) {
           cancel = false;
-          break;
         }
       }
+      rows[row] = cancel;
       if (cancel) {
-        rows[i] = cancel;
+        score += gridWidth;
+        console.log('Canceling row ' + row);
       }
     }
 
-    for (var i = 0; i < gridWidth; i++) {
-      if (rows[i]) {
-        grid.splice(i, 1);
-        var empty = []
-        for (var j = 0; j < gridHeight; j++) {
-          empty[j] = false;
+    for (var col = 0; col < gridHeight; col++) {
+        for (var row = 0; row < gridWidth; row++) {
+          if (rows[row]) {
+            console.log('sliced it');
+            grid[col].slice(row, 1);
+            grid[col].unshift(false);
+          }
         }
-        grid.unshift(empty);
-      }
     }
   }
 }
