@@ -197,6 +197,10 @@ class DefaultController extends Controller
                 "/js/libs/p5/p5.min.js",
                 "/js/p5/metaball/metaball.js",
             ],
+            'tetris'      => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/tetris/tetris.js",
+            ],
         ];
 
         if (! array_key_exists($name, $games)) {
@@ -250,4 +254,3 @@ class DefaultController extends Controller
             'random'     => $random));
     }
 }
-
