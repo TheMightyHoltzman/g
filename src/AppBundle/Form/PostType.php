@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PostType extends AbstractType
 {
@@ -24,7 +25,7 @@ class PostType extends AbstractType
             ->add('category', ChoiceType::class, [
                 'choices' => array_combine(Post::getCategories(), Post::getCategories()),
             ])
-            ->add('imageFile', 'vich_image', array(
+            ->add('imageFile', VichImageType::class, array(
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
