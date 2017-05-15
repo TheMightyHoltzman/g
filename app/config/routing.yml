@@ -32,6 +32,12 @@ jazz:
         _controller: FrameworkBundle:Template:template
         template:    default/jazz.html.twig
 
+cv:
+    path: /cv
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    cv/cv.html
+
 # app/config/routing.yml
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

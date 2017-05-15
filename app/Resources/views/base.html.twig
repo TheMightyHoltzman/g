@@ -20,6 +20,7 @@
         </div>
 
         <script src="{{ asset('/js/bootstrap.min.js') }}"/>
+        <script>$("div.navbar-fixed-top").autoHidingNavbar();</script>
         {% block javascripts %}{% endblock %}
         {% include 'components/google_analytics.html.twig' %}
     </body>

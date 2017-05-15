@@ -1,3 +1,1 @@
-/**
- * Created by heiko on 25.04.17.
- */
+$("div.navbar-fixed-top").autoHidingNavbar();
