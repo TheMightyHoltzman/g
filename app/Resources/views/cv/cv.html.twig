@@ -1,3 +1,7 @@
+{% import 'default/macros.html.twig' as macros %}
+{% set lang = app.request.get('lang') %}
+{% set cologne = macros.t('Cologne', 'Köln', lang)  %}
+
 <head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
@@ -144,27 +148,69 @@
     <div class="middle row">
         <div class="column column-1">
             <p>
-                <span style="margin-right: 15px;"><i class="fa fa-map-marker fa-1 grey" aria-hidden="true"></i></span> 50668 K&ouml;ln, Am Zuckerberg 4<br>
+                <span style="margin-right: 15px;"><i class="fa fa-map-marker fa-1 grey" aria-hidden="true"></i></span> 50668 Köln, Am Zuckerberg 4<br>
                 <span style="margin-right: 10px;"><i class="fa fa-phone fa-1 grey" aria-hidden="true"></i></span> +49 176 8474 895<br>
                 <span style="margin-right: 10px;"><i class="fa fa-envelope fa-1 grey" aria-hidden="true"></i></span> <a href="mailto:matternheiko@gmail.com">matternheiko@gmail.com</a><br>
-                <span style="margin-right: 10px;"><i class="fa fa-birthday-cake fa-1 grey" aria-hidden="true"></i></span> 23rd March 1984
+                <span style="margin-right: 10px;"><i class="fa fa-birthday-cake fa-1 grey" aria-hidden="true"></i></span> {{ macros.t('23rd March 1984', '23. März 1984', lang) }}
 
             </p>
-            <h3>TECHNICAL KNOW-HOW</h3>
-            <p class="margin-t">My main focus at the moment is on Backend Web Development with the LEMP-Stack (Linux, nginx, MySQL, PHP), though I am also versed in HTML, CSS, JavaScript and Java.
+            <h3>
+                {% set tEn = 'TECHNICAL KNOW-HOW' %}
+                {% set tDe = 'TECHNISCHE KENNTNISSE' %}
+                {{ macros.t(tEn, tDe, lang) }}
+            </h3>
+            <p class="margin-t">
+                {% set tEn = 'My main focus at the moment is on Backend Web Development with the LEMP-Stack (Linux, nginx, MySQL, PHP), though I am also versed in HTML, CSS, JavaScript and Java.' %}
+                {% set tDe = 'Mein Hauptfokus ist derzeit die Backend-Entwicklung mit dem LEMP-Stack (Linux, nginx, MySQL, PHP), aber ich besitze auch gute Kenntnisse in CSS, Javascript und Java.' %}
+                {{ macros.t(tEn, tDe, lang) }}
             </p>
             <ul>
-                <li>I plan with: Scrum, Jira</li>
-                <li>I operate on: Linux (Ubuntu)</li>
-                <li>I code with: phpStorm, Eclipse</li>
-                <li>I stick to: Design Patterns, OOP, KISS, DRY</li>
-                <li>I test with: PHPUnit, JUnit</li>
-                <li>I care about: Performance, Code Quality, UX</li>
-                <li>I version with: git</li>
-                <li>I deploy with: Bash, Jenkins</li>
+                <li>
+                    {% set tEn = 'I plan with' %}
+                    {% set tDe = 'Ich plane mit' %}
+                    {{ macros.t(tEn, tDe, lang) }}: Scrum, Jira
+                </li>
+                <li>
+                    {% set tEn = 'I operate on' %}
+                    {% set tDe = 'Mein OS' %}
+                    {{ macros.t(tEn, tDe, lang) }}: Linux (Ubuntu)
+                </li>
+                <li>
+                    {% set tEn = 'I code with' %}
+                    {% set tDe = 'Ich code mit' %}
+                    {{ macros.t(tEn, tDe, lang) }}: phpStorm, Eclipse
+                </li>
+                <li>
+
+                    {% set tEn = 'I stick to' %}
+                    {% set tDe = 'Ich halte mich an' %}
+                    {{ macros.t(tEn, tDe, lang) }}: Design Patterns, OOP, KISS, DRY
+                </li>
+                <li>
+                    {% set tEn = 'I test with' %}
+                    {% set tDe = 'Ich teste mit' %}
+                    {{ macros.t(tEn, tDe, lang) }}: PHPUnit, JUnit
+                </li>
+                <li>
+                    {% set tEn = 'I care about' %}
+                    {% set tDe = 'Was mir wichtig ist' %}
+                    {{ macros.t(tEn, tDe, lang) }}: Performance, Code Quality, UX
+                </li>
+                <li>
+                    {% set tEn = 'I version with' %}
+                    {% set tDe = 'Ich versioniere mit' %}
+                    {{ macros.t(tEn, tDe, lang) }}: git
+                </li>
+                <li>
+                    {% set tEn = 'I deploy with' %}
+                    {% set tDe = 'Ich deploye mit' %}
+                    {{ macros.t(tEn, tDe, lang) }}: Bash, Jenkins
+                </li>
             </ul>
 
-            Here is a small impression in numbers (l.o.c. = lines of code):
+            {% set tEn = 'Here is a small impression in numbers' %}
+            {% set tDe = 'Hier ist ein kleiner Eindruck in Zahlen' %}
+            {{ macros.t(tEn, tDe, lang) }} (l.o.c. = lines of code):
             <table class="skills">
                 <tbody>
                 <tr>
@@ -183,83 +229,167 @@
             </table>
 
             <br>
-            I am also interested in the current js-boom and the MEAN-stack and have dabbled in node.js and MONGO-DB.
+            {% set tEn = 'I am also interested in the current js-boom and the MEAN-stack and have dabbled in node.js and MONGO-DB.' %}
+            {% set tDe = 'Ich interesse mich auch für den derzeitigen JS-Boom und den MEAN-Stack und habe Erfahrung mit node.js und Mongo-DB.' %}
+            {{ macros.t(tEn, tDe, lang) }}
             <br>
 
             <h3>WEB</h3>
             <p>
-                <span style="margin-right: 10px;"><i class="fa fa-linkedin fa-1 grey" aria-hidden="true"></i></span> <a href="https://www.linkedin.com/in/heiko-mattern-1b153372/">Profile  (LinkedIn)</a><br>
-                <span style="margin-right: 10px;"><i class="fa fa-stack-overflow fa-1 grey" aria-hidden="true"></i></span> <a href="http://stackoverflow.com/users/1329003/harry-the-holtzman">Profile  (StackOverflow)</a>
+                <span style="margin-right: 10px;"><i class="fa fa-linkedin fa-1 grey" aria-hidden="true"></i></span> <a href="https://www.linkedin.com/in/heiko-mattern-1b153372/"> LinkedIn</a><br>
+                <span style="margin-right: 10px;"><i class="fa fa-stack-overflow fa-1 grey" aria-hidden="true"></i></span> <a href="http://stackoverflow.com/users/1329003/harry-the-holtzman"> StackOverflow</a>
             </p>
 
             <br>
 
-            <h3>LANGUAGES</h3>
+            <h3>
+                {% set tEn = 'LANGUAGES' %}
+                {% set tDe = 'SPRACHEN' %}
+                {{ macros.t(tEn, tDe, lang) }}
+
+            </h3>
             <table class="skills">
                 <tbody>
                 <tr>
-                    <td>German</td>
-                    <td>native</td>
+                    <td>
+                        {% set tEn = 'German' %}
+                        {% set tDe = 'Deutsch' %}
+                        {{ macros.t(tEn, tDe, lang) }}
+                    </td>
+                    <td>
+                        {% set tEn = 'native' %}
+                        {% set tDe = 'Muttersprache' %}
+                        {{ macros.t(tEn, tDe, lang) }}
+                    </td>
                 </tr>
                 <tr>
-                    <td>English</td>
-                    <td>fluent</td>
+                    <td>
+                        {% set tEn = 'English' %}
+                        {% set tDe = 'English' %}
+                        {{ macros.t(tEn, tDe, lang) }}
+                    </td>
+                    <td>
+                        {% set tEn = 'fluent' %}
+                        {% set tDe = 'fließend' %}
+                        {{ macros.t(tEn, tDe, lang) }}
+                    </td>
                 </tr>
                 <tr>
-                    <td>Spanish, French</td>
-                    <td>advanced</td>
+                    <td>
+                        {% set tEn = 'Spanish, French' %}
+                        {% set tDe = 'Spanisch, Französisch' %}
+                        {{ macros.t(tEn, tDe, lang) }}
+                    </td>
+                    <td>
+                        {% set tEn = 'advanced' %}
+                        {% set tDe = 'fortgeschritten' %}
+                        {{ macros.t(tEn, tDe, lang) }}
+                    </td>
                 </tr>
                 </tbody>
             </table>
 
-            <div style="position:absolute; bottom: 20px;"><p>Last updated on 15th May, 2016</p></div>
+            <div style="position:absolute; bottom: 20px;">
+                <p>
+                    {% set tEn = 'Last updated on' %}
+                    {% set tDe = 'Zuletzt geändert am' %}
+                    {% set format = lang == 'en' ? 'm/d/Y' : 'd.m.Y' %}
+                    {{ macros.t(tEn, tDe, lang) }}: {{ "now"|date(format) }}
+                </p>
+            </div>
         </div>
         <div class="column column-2">
+            {% set tech = macros.t('Technologies', 'Technologien', lang) %}
             <div>
-                <h3>WORK HISTORY</h3>
+                <h3>
+                    {% set tEn = 'WORK HISTORY' %}
+                    {% set tDe = 'BERUFLICHE LAUFBAHN' %}
+                    {{ macros.t(tEn, tDe, lang) }}
+
+                </h3>
                 <table class="history">
                     <tbody>
                     <tr>
                         <td class="date">06/2014-12/2016</td>
                         <td class="">
-                            <h4 class="role">Web-Developer (Senior)</h4>
-                            <h5 class="company">miamed, Cologne DE <a href="https://www.miamed.de" target="_blank"><i class="fa fa-external-link fa-1" aria-hidden="true"></i></a></h5>
-                            <p class="desc">miamed produces learning apps for medical students and doctors, the most important one (AMBOSS) preparing senior students for their intermediate and final exams. I implemented parts of the backend for the clinic data base STEIGBUEGEL, an Import-API for clinics and advertisements for job offers and extended the backend for editors. I was part of the Internationalisation-team for AMBOSS, which refactored most of the application to enable a multi-lingual app.</p>
-                            <p class="tech">Technologies: Linux, nginx, PHP, HTML, CSS, JavaScript, Symfony(1-3), Doctrine, jQuery (and marginal amounts of Angular)</p>
+                            <h4 class="role">
+                                Web-Developer (Senior)
+                            </h4>
+                            <h5 class="company">
+                                miamed, {{ cologne }} DE <a href="https://www.miamed.de" target="_blank"><i class="fa fa-external-link fa-1" aria-hidden="true"></i></a>
+                            </h5>
+                            <p class="desc">
+                                {% set tEn = 'miamed produces learning apps for medical students and doctors, the most important one (AMBOSS) preparing senior students for their intermediate and final exams. I implemented parts of the backend for the clinic data base STEIGBUEGEL, an Import-API for clinics and advertisements for job offers and extended the backend for editors. I was part of the Internationalisation-team for AMBOSS, which refactored most of the application to enable a multi-lingual app.' %}
+                                {% set tDe = 'miamed erstellt digitale Lernhilfen für Medizinstudenten und Ärzte. Die bekannteste Anwendung (AMBOSS) wird von einem Großteil der Medizinstudenten genutzt, um sich für das 1. und 2. Staatsexamen vorzubereiten. Während meiner Zeit dort habe ich Teile des Backends für die Klinikdatenbank STEIGBUEGEL programmiert, eine Import-API für Kliniken und Stellenangebote entworfen und Eingabe- und Bearbeitungshilfen für die Redakteure geschaffen. Desweiteren war ich Teil des Internationalisierungs-Teams, welches einen Großteil der Anwendung angepasst hat, um Mehrsprachigkeit zu ermöglichen.' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
+                            <p class="tech">
+                                {{ tech }}: Linux, nginx, PHP, HTML, CSS, JavaScript, Symfony(1-3), Doctrine, jQuery, Angular
+                            </p>
                         </td>
                     </tr>
                     <tr></tr>
                     <tr>
                         <td class="date">03/2012-12/2013</td>
                         <td>
-                            <h4 class="role">Java-Developer (Junior)</h4>
-                            <h5 class="company">parcIT, Cologne DE <a href="https://www.parcit.de" target="_blank"><i class="fa fa-external-link fa-1" aria-hidden="true"></i></a></h5>
-                            <p class="desc">parcIT produces Software for Risk Management and Controlling. While there I worked on a market data framework (data like exchange rates, volatilities, cross rates, ...), which imported great amounts of data and provided a query mask to customize filtering and presentation.</p>
-                            <p class="tech">Technologies: Java, AWT, Swing, Hibernate</p>
+                            <h4 class="role">
+                                Java-Developer (Junior)
+                            </h4>
+                            <h5 class="company">
+                                parcIT, {{ cologne }} DE <a href="https://www.parcit.de" target="_blank"><i class="fa fa-external-link fa-1" aria-hidden="true"></i></a>
+                            </h5>
+                            <p class="desc">
+                                {% set tEn = 'parcIT produces Software for Risk Management and Controlling. While there I worked on a market data framework (data like exchange rates, volatilities, cross rates, ...), which imported great amounts of data and provided a query mask to customize filtering and presentation.' %}
+                                {% set tDe = 'parcIT entwickelt Software für Risiko Management und Controlling. Während meiner Zeit dort habe ich an einem Marktdatenframework gearbeitet (Wechselkurse, Volatilitäten, Cross-Rates, ...), welcher große Datenmengen importiert und eine personalisierte Suche und Anzeige ermöglicht.' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
+                            <p class="tech">{{ tech }}: Java, AWT, Swing, Hibernate</p>
                         </td>
                     </tr>
                     <tr><td style="margin-bottom: 100px;"></td><td style="margin-bottom: 100px;"> </td></tr>
                     <tr>
                         <td class="date">06/2011-02/2012</td>
                         <td>
-                            <h4 class="role">Web-Developer (Junior)</h4>
-                            <h5 class="company">wergehthin, Cologne DE</h5>
-                            <p class="desc">wergehthin was an Event website for Cologne and Berlin. While there I migrated a custom PHP-site to the CMS Drupal and implemented custom features like
-                                a geographical search and an improved rating algorithm.</p>
+                            <h4 class="role">
+                                Web-Developer (Junior)
+                            </h4>
+                            <h5 class="company">
+                                wergehthin, {{ cologne }} DE
+                            </h5>
+                            <p class="desc">
+                                {% set tEn = 'wergehthin was an Event website for Cologne and Berlin. While there I migrated a custom PHP-site to the CMS Drupal and implemented custom features like
+                                    a geographical search and an improved rating algorithm.' %}
+                                {%  set tDe = 'wergehthin war eine Event-Webseite für Köln und Berlin. Ich habe dort die Migration von einer Custom-PHP-Seite in das CMS Drupal geplant und verschiedene Features wie bspw. eine geographische Suche und einen verbesserten Rating-Algorithmus implementiert.' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
                             <p class="tech">Technologies: PHP, HTML, CSS, Javascript, jQuery, Drupal</p>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <h3>EDUCATION</h3>
+                <h3>
+                    {% set tEn = 'EDUCATION' %}
+                    {% set tDe = 'BILDUNG' %}
+                    {{ macros.t(tEn, tDe, lang) }}
+                </h3>
                 <table class="history">
                     <tbody>
                     <tr>
                         <td class="date">09/2007-05/2011</td>
                         <td>
-                            <h4 class="role">Bachelor of Science, Mathematics with Minor in Computer Science</h4>
-                            <h5 class="company">Ruhr Universit&auml;t Bochum, Bochum DE</h5>
-                            <p class="desc">Final Grade: 2,2 - Thesis: "The probabilistic method with applications in additive combinatorics"</p>
+                            <h4 class="role">
+                                {% set tEn = 'Bachelor of Science, Mathematics with Minor in Computer Science' %}
+                                {% set tDe = 'Bachelor of Science, Mathematik mit Nebenfach Informatik' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </h4>
+                            <h5 class="company">
+                                Ruhr Universit&auml;t Bochum, Bochum DE
+                            </h5>
+                            <p class="desc">
+                                {% set tEn = 'Final Grade: 2,2 - Thesis: "The probabilistic method with applications in additive combinatorics"' %}
+                                {% set tDe = 'Abschlussnote: 2,2 - Titel: "Die probabilistische Methode mit Anwendungen in der additiven Kombinatorik"' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
                         </td>
                     </tr>
                     <tr>
@@ -267,38 +397,72 @@
                         <td>
                             <h4 class="role">Leaving Certificate</h4>
                             <h5 class="company">Colaiste Stiofain Naofa, Cork IRE</h5>
-                            <p class="desc">Irish Leaving Certificate (equivalent to german "Abitur")</p>
+                            <p class="desc">
+                                {% set tEn = 'Irish Leaving Certificate (equivalent to german "Abitur")' %}
+                                {% set tDe = 'Irisches Leavin Certificate (äquivalent zu deutschem Abitur)' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <h3>FURTHER ACTIVITIES</h3>
+                <h3>
+                    {% set tEn = 'FURTHER ACTIVITIES' %}
+                    {% set tDe = 'WEITERE AKTIVITÄTEN' %}
+                    {{ macros.t(tEn, tDe, lang) }}
+                </h3>
                 <table class="history">
                     <tbody>
                     <tr>
                         <td class="date">01/2014-05/2014</td>
                         <td>
-                            <h4 class="role">Educational Trip in South America</h4>
-                            <p class="desc">Amongst other things I polished up on my Spanish in Cuzco and volunteered for 2 months in a conservational project in the National Park Manu
-                                (<a href="">Reserva Tierra Linda</a>)</p>
+                            <h4 class="role">
+                                {% set tEn = 'Educational Trip in South America' %}
+                                {% set tDe = 'Bildungsreise in Süd-Amerika' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </h4>
+                            <p class="desc">
+                                {% set tEn = 'Amongst other things I polished up on my Spanish in Cuzco and volunteered for 2 months in a conservational project in the National Park Manu' %}
+                                {% set tDe = 'Unter anderem Sprachkurse in Spanisch in Cuzco, Peru und ein zweimonatiges Volontariat in einem Artenschutzprojekt im Nationalpark Manu, Peru' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                                (<a href="http://reservatierralinda.com/?lang=en">Reserva Tierra Linda</a>)
+                            </p>
                         </td>
                     </tr>
                     <tr>
                         <td class="date">06/2004-05/2005</td>
                         <td>
-                            <h4 class="role">Voluntary social year</h4>
-                            <h5 class="company">Individualhilfe, Heidelberg DE <a href="https://www.individualhilfe.de" target="_blank"><i class="fa fa-external-link fa-1" aria-hidden="true"></i></a></h5>
-                            <p class="desc">During this time I helped physically impaired people in their everyday life.</p>
+                            <h4 class="role">
+                                {% set tEn = 'Voluntary Social Year' %}
+                                {% set tDe = 'Freiwillliges soziales Jahr' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </h4>
+                            <h5 class="company">
+                                Individualhilfe, Heidelberg DE <a href="https://www.individualhilfe.de" target="_blank"><i class="fa fa-external-link fa-1" aria-hidden="true"></i></a>
+                            </h5>
+                            <p class="desc">
+                                {% set tEn = 'During this time I helped physically impaired people in their everyday life.' %}
+                                {% set tDe = 'In diesem Jahr habe ich Leuten mit körperlichen Einschränkungen in ihrem täglichen Leben geholfen.' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <h3>ABOUT/PHILOSOPHY</h3>
+                <h3>
+                    {% set tEn = 'ABOUT/PHILOSOPHY' %}
+                    {% set tDe = 'ÜBER MICH/PHILOSOPHIE' %}
+                    {{ macros.t(tEn, tDe, lang) }}
+                </h3>
                 <p>
-                    After working in IT for more than 10 years I have encountered many different programming languages, frameworks and methodologies. What still fascinates to this day is that there
+                    {% set tEn = 'After working in IT for more than 10 years I have encountered many different programming languages, frameworks and methodologies. What still fascinates to this day is that there
                     is always more to learn and you can improve continuously in this field - and the best solution to a problem is in most cases short and elegant. When working on a project
                     I like planning in small succinct steps, that enable a continuous delivery that can be improved upon after each iteration. I enjoy working in a team and place great value on a
-                    collaborative environment.
+                    collaborative environment.' %}
+                    {% set tDe = 'In den mehr als 10 Jahren, in denen ich mich mit der Programmierung beschäftige, habe ich viele verschiedene Sprachen, Frameworks und Denkweisen kennengelernt.
+                    Was mich bis heute daran fasziniert, ist, dass man in diesem Bereich nie auslernt und eine stete Verbesserung der eigenen Fähigkeiten möglich ist - und die beste Lösung für
+                    ein Problem in den meisten Fällen knapp und elegant ist.' %}
+                    {{ macros.t(tEn, tDe, lang) }}
                 </p>
             </div>
         </div>

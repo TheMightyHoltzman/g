@@ -62,6 +62,15 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/cv/{lang}", name="cv_language")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getCvLanguageAction($lang)
+    {
+        return $this->render('cv/cv.html.twig', array('lang' => $lang));
+    }
+
+    /**
      * @Route("/rss.xml", name="rss")
      */
     public function rssAction(Request $request)
@@ -113,6 +122,16 @@ class DefaultController extends Controller
         }
 
         return $this->render('components/blog_item.html.twig', array('post' => $post));
+    }
+
+    /**
+     * @Route("/api/test", name="api_test")
+     * @return JsonResponse
+     */
+    public function apiTestAction() {
+        $post = $this->getPostRepo()->getLatest();
+        $post = (array) $post;
+        return new JsonResponse($post,200);
     }
 
     /**

@@ -18,6 +18,14 @@
     {% endif %}
 {% endmacro %}
 
+{% macro t(textEn, textDe, lang='en') %}
+    {% if lang == 'en' %}
+        {{ textEn }}
+    {% else %}
+        {{ textDe }}
+    {% endif %}
+{% endmacro %}
+
 {% macro open_graph(url, title, type, description, image) %}
     <meta property="og:url"                content="{{ url }}" />
     <meta property="og:type"               content="{{ type }}" />
