@@ -33,10 +33,10 @@ jazz:
         template:    default/jazz.html.twig
 
 cv:
-    path: /cv
+    path: /cv/:lang
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    cv/cv.html
+        template:    cv/cv.html.twig
 
 # app/config/routing.yml
 fos_user:
