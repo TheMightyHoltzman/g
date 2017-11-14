@@ -220,6 +220,14 @@ class DefaultController extends Controller
                 "/js/libs/p5/p5.min.js",
                 "/js/p5/tetris/tetris.js",
             ],
+            'paint' => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/paint/paint.js",
+            ],
+            'solitaire' => [
+                "/js/libs/p5/p5.min.js",
+                "/js/p5/paint/game.js",
+            ],
         ];
 
         if (! array_key_exists($name, $games)) {

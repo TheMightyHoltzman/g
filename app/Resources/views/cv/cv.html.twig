@@ -149,7 +149,7 @@
         <div class="column column-1">
             <p>
                 <span style="margin-right: 15px;"><i class="fa fa-map-marker fa-1 grey" aria-hidden="true"></i></span> 50668 Köln, Am Zuckerberg 4<br>
-                <span style="margin-right: 10px;"><i class="fa fa-phone fa-1 grey" aria-hidden="true"></i></span> +49 176 8474 895<br>
+                <span style="margin-right: 10px;"><i class="fa fa-phone fa-1 grey" aria-hidden="true"></i></span> +49 163 68 69 869<br>
                 <span style="margin-right: 10px;"><i class="fa fa-envelope fa-1 grey" aria-hidden="true"></i></span> <a href="mailto:matternheiko@gmail.com">matternheiko@gmail.com</a><br>
                 <span style="margin-right: 10px;"><i class="fa fa-birthday-cake fa-1 grey" aria-hidden="true"></i></span> {{ macros.t('23rd March 1984', '23. März 1984', lang) }}
 
@@ -237,7 +237,8 @@
             <h3>WEB</h3>
             <p>
                 <span style="margin-right: 10px;"><i class="fa fa-linkedin fa-1 grey" aria-hidden="true"></i></span> <a href="https://www.linkedin.com/in/heiko-mattern-1b153372/"> LinkedIn</a><br>
-                <span style="margin-right: 10px;"><i class="fa fa-stack-overflow fa-1 grey" aria-hidden="true"></i></span> <a href="http://stackoverflow.com/users/1329003/harry-the-holtzman"> StackOverflow</a>
+                <span style="margin-right: 10px;"><i class="fa fa-stack-overflow fa-1 grey" aria-hidden="true"></i></span> <a href="http://stackoverflow.com/users/1329003/harry-the-holtzman"> StackOverflow</a><br>
+                <span style="margin-right: 10px;"><i class="fa fa-github fa-1 grey" aria-hidden="true"></i></span> <a href="https://github.com/TheMightyHoltzman"> Github</a>
             </p>
 
             <br>
@@ -289,6 +290,22 @@
                 </tbody>
             </table>
 
+            <h3>
+                {% set tEn = 'ABOUT/PHILOSOPHY' %}
+                {% set tDe = 'ÜBER MICH/PHILOSOPHIE' %}
+                {{ macros.t(tEn, tDe, lang) }}
+            </h3>
+            <p style="font-size: 10px;">
+                {% set tEn = 'After working in IT for more than 10 years I have encountered many different programming languages, frameworks and methodologies. What still fascinates to this day is that there
+                is always more to learn and you can improve continuously in this field - and the best solution to a problem is in most cases short and elegant. When working on a project
+                I like planning in small succinct steps, that enable a continuous delivery that can be improved upon after each iteration. I enjoy working in a team and place great value on a
+                collaborative environment.' %}
+                {% set tDe = 'In den mehr als 10 Jahren, in denen ich mich mit der Programmierung beschäftige, habe ich viele verschiedene Sprachen, Frameworks und Denkweisen kennengelernt.
+                Was mich bis heute daran fasziniert, ist, dass man in diesem Bereich nie auslernt und eine stete Verbesserung der eigenen Fähigkeiten möglich ist - und die beste Lösung für
+                ein Problem in den meisten Fällen knapp und elegant ist.' %}
+                {{ macros.t(tEn, tDe, lang) }}
+            </p>
+
             <div style="position:absolute; bottom: 20px;">
                 <p>
                     {% set tEn = 'Last updated on' %}
@@ -328,7 +345,6 @@
                             </p>
                         </td>
                     </tr>
-                    <tr></tr>
                     <tr>
                         <td class="date">03/2012-12/2013</td>
                         <td>
@@ -414,6 +430,23 @@
                 <table class="history">
                     <tbody>
                     <tr>
+                        <td class="date">01/2017-07/2017</td>
+                        <td class="">
+                            <h4 class="role">
+                              Sabbatical
+                            </h4>
+                            <h5 class="company">
+                            </h5>
+                            <p class="desc">
+                                {% set tEn = 'Still young enough (at heart) and without any major responsibilities, I decided to fulfill a lifelong dream and went to Australia for 6 months.' %}
+                                {% set tDe = 'Noch jung genug (zumindest im Herzen) und ohne größere Verpflichtungen, entschloss ich mich mir einen großen Jugendtraum zu erfüllen: ich ging für 6 Monate nach Australien.' %}
+                                {{ macros.t(tEn, tDe, lang) }}
+                            </p>
+                            <p class="tech">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="date">01/2014-05/2014</td>
                         <td>
                             <h4 class="role">
@@ -449,21 +482,6 @@
                     </tr>
                     </tbody>
                 </table>
-                <h3>
-                    {% set tEn = 'ABOUT/PHILOSOPHY' %}
-                    {% set tDe = 'ÜBER MICH/PHILOSOPHIE' %}
-                    {{ macros.t(tEn, tDe, lang) }}
-                </h3>
-                <p>
-                    {% set tEn = 'After working in IT for more than 10 years I have encountered many different programming languages, frameworks and methodologies. What still fascinates to this day is that there
-                    is always more to learn and you can improve continuously in this field - and the best solution to a problem is in most cases short and elegant. When working on a project
-                    I like planning in small succinct steps, that enable a continuous delivery that can be improved upon after each iteration. I enjoy working in a team and place great value on a
-                    collaborative environment.' %}
-                    {% set tDe = 'In den mehr als 10 Jahren, in denen ich mich mit der Programmierung beschäftige, habe ich viele verschiedene Sprachen, Frameworks und Denkweisen kennengelernt.
-                    Was mich bis heute daran fasziniert, ist, dass man in diesem Bereich nie auslernt und eine stete Verbesserung der eigenen Fähigkeiten möglich ist - und die beste Lösung für
-                    ein Problem in den meisten Fällen knapp und elegant ist.' %}
-                    {{ macros.t(tEn, tDe, lang) }}
-                </p>
             </div>
         </div>
     </div>

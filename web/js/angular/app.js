@@ -1,3 +1,1 @@
-/**
- * Created by heiko on 15.05.17.
- */
+var app = angular.module('GlogApp', []);
